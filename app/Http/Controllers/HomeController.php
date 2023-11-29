@@ -255,6 +255,7 @@ class HomeController extends Controller
             $order->address = $request->address;
             $order->status = 0;
             $order->payment_method = 0;
+            $order->Total_selling_price = $Total_selling_price ;
             $order->save();
             $cart = session()->get('cart');
             foreach ($cart as $key => $value) {
@@ -273,9 +274,6 @@ class HomeController extends Controller
             $order->save();
 
             session()->forget('cart');
-            echo "<script>";
-            echo "alert('hello');";
-            echo "</script>";
             return redirect()->back()->with('alert', 'Order successfully!');
         }
     }

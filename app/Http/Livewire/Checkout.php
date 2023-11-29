@@ -31,11 +31,11 @@ class Checkout extends Component
         if (empty($customer)) {
             $address = [];
         } else {
-            $address = address::where('id_customer', $customer['id'])->where('status', 1)->get(); 
-            $idCustomeraddress = address::where('id_customer', $customer['id'])->where('status', 1)->first();  
+            $address = address::where('id_customer', $customer['id'])->where('status', 1)->get();
+            $idCustomeraddress = address::where('id_customer', $customer['id'])->where('status', 1)->first();
         }
         // get customers address and status = 1
-        
+
 
         foreach ($address as $key => $value) {
             $province = Province::find($value->province);
@@ -46,7 +46,7 @@ class Checkout extends Component
             $value->ward = $ward->name;
             array_push($customeraddress, $value);
         }
-       
+
         foreach ($this->cart as $details) {
             $total += $details['price'] * $details['quantity'];
         }

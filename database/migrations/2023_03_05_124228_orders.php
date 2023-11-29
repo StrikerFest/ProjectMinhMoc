@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('district');
             $table->string('ward');
             $table->string('address');
+            $table->smallInteger('payment_method');
             $table->smallInteger('customer_id');
             $table->smallInteger('Status');
             $table->timestamps();
