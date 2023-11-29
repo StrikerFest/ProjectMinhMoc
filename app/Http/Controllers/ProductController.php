@@ -9,10 +9,11 @@ use Illuminate\View\View;
 use Illuminate\Pagination\CursorPaginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // view 
+    // view
     public function index()
     {
         $product = product::paginate(8);
@@ -36,27 +37,31 @@ class ProductController extends Controller
             'quantity' => 'required|int',
             'description' => 'required|string',
             'export_price' => 'required|string',
+            'import_price' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        if ($request->hasFile('image')) {
-            $completeFilename = $request->file('image')->getClientOriginalName();
-            $filenameonly = pathinfo($completeFilename, PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $comPic = str_replace(' ', '_', $filenameonly) . '_' . time() . '.' . $extension;
-            $path = $request->file('image')->storeAs('public/images', $comPic);
-        }
+        // Lấy file được upload
+        $image = $request->file('image');
 
+        // Tạo tên cho file theo thời gian
+         $imageName = time().'.'.$image->extension();
+
+        // Lưu vào public/images (trong storage)
+         Storage::putFileAs('public/images', $image, $imageName);
+
+        // Tạo sản phẩm
         $data = Product::create([
             'id_category' => $request->id_category,
             'name' => $request->name,
             'quantity' => $request->quantity,
             'description' => $request->description,
             'export_price' => $request->export_price,
+            'import_price' => $request->import_price,
             'Is_Active' => 0,
-            'image' => $comPic,
+            'image' => $imageName,
         ]);
-        return redirect()->back()->with('success', 'Product added successfully');
+        return redirect('/admin/product')->with('success', 'Sản phẩm được thêm thành công');
     }
     // update quantity = 0
     public function deleteProduct($id)
@@ -71,6 +76,7 @@ class ProductController extends Controller
             $product->Is_Active = 0;
         }
         $product->save();
+
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
     // edit product by id from request

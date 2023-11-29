@@ -14,6 +14,7 @@ class product extends Model
         'name',
         'quantity',
         'description',
+        'import_price',
         'export_price',
         'Is_Active',
         'image',

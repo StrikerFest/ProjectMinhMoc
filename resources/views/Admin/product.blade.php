@@ -31,7 +31,7 @@
             @foreach($product as $product1)
             <div class="col">
                 <div class="card">
-                    <img src="http://127.0.0.1:8000/storage/images/{{ $product1->image }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/images/'. $product1->image ) }}" class="card-img-top" alt="...">
                     <div class="">
                         <!-- @if($product1->quantity > 10)
                                 <div class="position-absolute top-0 end-0 m-3 product-discount"><span class=""

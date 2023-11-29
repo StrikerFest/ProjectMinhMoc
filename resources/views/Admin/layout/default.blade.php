@@ -338,6 +338,15 @@
 
     </script>
 
+    <!-- POPUP check -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there is a success message in the session
+            @if(session('success'))
+                alert('{{ session('success') }}');
+            @endif
+        });
+    </script>
 </body>
 
 </html>

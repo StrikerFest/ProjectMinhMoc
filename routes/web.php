@@ -45,10 +45,6 @@ Route::post('/login', [UserController::class,'login']);
 
 Route::get('/admin', [UserController::class,'index'])->middleware('admin');
 
-// ADMIN - PRODUCT
-
-Route::get('/admin/product', [ProductController::class,'index'])->middleware('admin');
-
 // statistical
 Route::get('/admin/statistical', [HomeController::class,'statistical'])->middleware('admin');
 
@@ -75,6 +71,8 @@ Route::get('/admin/purchase', [PurchaseController::class,'index'])->middleware('
 Route::get('/admin/edit-purchase/{id}', [PurchaseController::class,'editPurchase']);
 
 // ADMIN - PRODUCT =================================
+
+Route::get('/admin/product', [ProductController::class,'index'])->middleware('admin');
 
 // add
 Route::get('/admin/product/addProduct',[ProductController::class,'addProduct'])->middleware('admin');
@@ -176,7 +174,7 @@ Route::get('/checkout', function () {
 
 // CUSTOMER - LOGIN AND REGISTER =================================
 
-// login 
+// login
 Route::get('/loginCustomer', function () {
     return view('customer.login');
 });

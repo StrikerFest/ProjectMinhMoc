@@ -49,7 +49,7 @@
                                     <div class="border border-3 p-4 rounded">
                                         <div class="mb-3">
                                             <label for="inputProductTitle" class="form-label">Tên Cây</label>
-                                            <input type="text" name="name" class="form-control" id="inputProductTitle"
+                                            <input required type="text" name="name" class="form-control" id="inputProductTitle"
                                                 placeholder="Nhập Tên Cây">
                                         </div>
                                         <div class="mb-3">
@@ -57,25 +57,32 @@
                                             <textarea name="description" class="form-control"
                                                 id="inputProductDescription" rows="3"></textarea>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="inputProductDescription" class="form-label">Ảnh Sản Phẩm</label>
-                                            <input name="image" id="image-uploadify" type="file"
+                                        {{-- <div class="mb-3">
+                                            <label for="image-uploadify" class="form-label">Ảnh Sản Phẩm</label>
+                                            <input required name="image" id="image-uploadify" type="file"
                                                 accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf"
                                                 multiple>
-                                        </div>
+                                        </div> --}}
+
+                                        <input required type="file" name="image" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row g-3">
                                             <div class="col-md-6">
+                                                <label for="inputPrice" class="form-label">Giá nhập</label>
+                                                <input name="import_price" type="number" class="form-control"
+                                                    id="inputPrice" placeholder="00.00">
+                                            </div>
+                                            <div class="col-md-6">
                                                 <label for="inputCostPerPrice" class="form-label">Giá Bán</label>
-                                                <input type="number" name="export_price" class="form-control"
+                                                <input required min="0" type="number" name="export_price" class="form-control"
                                                     id="inputCostPerPrice" placeholder="00.00">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="inputStarPoints" class="form-label">Số Lượng</label>
-                                                <input type="text" name="quantity" class="form-control"
+                                                <input required min="1" value="1" type="number" name="quantity" class="form-control"
                                                     id="inputStarPoints" placeholder="00.00">
                                             </div>
                                             <div class="col-12">
@@ -89,7 +96,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-grid">
-                                                    <button type="submit" class="btn btn-light">Thêm Sản Phẩm</button>
+                                                    <button type="submit" onclick="validateEmpty()" class="btn btn-light">Thêm Sản Phẩm</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -160,15 +167,20 @@
                                         </div>
                                         <div class="mb-3">
                                             <p>Ảnh sản phẩm</p>
-                                            <input name="image" type="file" value="{{$product->image}}"
-                                                accept=".xlsx,.xls,image/*,.doc,audio/*,.docx,video/*,.ppt,.pptx,.txt,.pdf">{{$product->image}} </input>
+                                            <input name="image" type="file" value="{{$product->image}}" accept="image/*">
+                                                {{$product->image}}
+                                            </input>
+                                            <hr>
+                                            <p>Ảnh cũ</p>
+                                            <img src="{{ asset('storage/images/'. $product->image ) }}" class="card-img-top" alt="">
+
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row g-3">
-                                           
+
                                             <div class="col-md-6">
                                                 <label for="inputCostPerPrice" class="form-label">Giá Bán</label>
                                                 <input type="number" value="{{$product->export_price}}" name="export_price" class="form-control"
