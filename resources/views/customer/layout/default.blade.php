@@ -55,7 +55,7 @@
         <header class="main-header-area">
             <div class="header-top bg-pronia-primary d-none d-lg-block">
                 <div class="container">
-                    
+
                 </div>
             </div>
             <div class="header-middle py-30">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             @livewire('menucustomer')
-           
+
             <div class="mobile-menu_wrapper" id="mobileMenu">
                 <div class="offcanvas-body">
                     <div class="inner-body">
@@ -129,8 +129,8 @@
                         </div>
                         <div class="offcanvas-user-info">
                             <ul class="dropdown-wrap">
-                               
-                                
+
+
                                 <li class="dropdown">
                                     <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button"
                                         id="settingButtonTwo" data-bs-toggle="dropdown" aria-expanded="false">
@@ -151,7 +151,7 @@
                         </div>
                         <div class="offcanvas-menu_area">
                             <nav class="offcanvas-navigation">
-                               
+
                             </nav>
                         </div>
                     </div>
@@ -208,13 +208,13 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="col-lg-3 col-md-4 pt-40">
                             <div class="footer-contact-info">
                                 <h3 class="footer-widget-title">Liên hệ qua hostline</h3>
                                 <a class="number" href="tel://0942603115">0942603115</a>
                                 <div class="address">
-                                  
+
                                 </div>
                             </div>
                             <div class="payment-method">
@@ -406,6 +406,19 @@
 
     <!-- JS Files
     ============================================ -->
+
+    <!-- POPUP check -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if there is a success message in the session
+            @if(session('success'))
+                alert('{{ session('success') }}');
+            @elseif (session('error'))
+                alert('{{ session('error') }}');
+            @endif
+        });
+
+    </script>
 
     <script src="{{ asset('assets_customers/assets/js/vendor/bootstrap.bundle.min.js') }}">
     </script>

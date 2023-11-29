@@ -127,7 +127,6 @@ class HomeController extends Controller
             'province' => 'required',
             'district' => 'required',
             'ward' => 'required',
-            'address' => 'required',
         ]);
         // start session save address and info customer
         session(['name' => $request->name]);
@@ -289,7 +288,7 @@ class HomeController extends Controller
             ->select('orders_details.*', 'product.name as product_name')
             ->where('orders_details.order_id', $id)
             ->get();
-        
+
         $email = order::where('id', $id)->first()->email;
         Mail::to($email)->send(new orderMail($data));
         return redirect()->back()->with('success', 'Send mail successfully!');
@@ -528,7 +527,7 @@ class HomeController extends Controller
             $value->ward = $ward->name;
             array_push($addressCustomer, $value);
         }
-        // select order by customer id 
+        // select order by customer id
         $order = order::where('customer_id', $customer_id)->orderBy('id', 'desc')->paginate(10);
         return view('customer.myacount', ['order' => $order, 'customer' => $customer, 'addressCustomer' => $addressCustomer]);
     }
@@ -599,17 +598,17 @@ class HomeController extends Controller
     //    Tính doanh thu của các ngày trong tháng hiện tại và status = 2
     $month = 7;
     $year = 2023;
-    
+
     $revenueByDay = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(Total_selling_price) as revenue'))
         ->whereMonth('created_at', $month)
         ->whereYear('created_at', $year)
         ->groupBy(DB::raw('DATE(created_at)'))
         ->get();
-        
-       
 
 
-     
+
+
+
         return view('admin.statistical', ['monthly_revenue' => $monthly_revenue,'revenueByDay'=>$revenueByDay]);
     }
     public function monyear(request $request){
@@ -641,14 +640,14 @@ class HomeController extends Controller
         $countRevenueInMonthDecember = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 12)->sum('Total_selling_price');
         // put revenue in $monthly_revenue
         $monthly_revenue = [$countRevenueInMonthJanuary, $countRevenueInMonthFebruary, $countRevenueInMonthMarch, $countRevenueInMonthApril, $countRevenueInMonthMay, $countRevenueInMonthJune, $countRevenueInMonthJuly, $countRevenueInMonthAugust, $countRevenueInMonthSeptember, $countRevenueInMonthOctober, $countRevenueInMonthNovember, $countRevenueInMonthDecember];
-       
-      
+
+
         $revenueByDay = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('SUM(Total_selling_price) as revenue'))
             ->whereMonth('created_at',$request->selectedMonth)
             ->whereYear('created_at', $request->selectedYear)
             ->groupBy(DB::raw('DATE(created_at)'))
             ->get();
-        
+
         return view('admin.statistical', ['monthly_revenue'=>$monthly_revenue,'revenueByDay'=>$revenueByDay]);
     }
 }

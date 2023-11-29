@@ -21,7 +21,7 @@ class ProductCatergoryController extends Controller
     {
         // Validate if empty
         if (empty($request->name)) {
-            return redirect()->back()->with('error', 'Name is required');
+            return redirect()->back()->with('error', 'Vui lòng nhập tên loại sản phẩm');
         }
 
         $productCategory = product_catergory::create([
