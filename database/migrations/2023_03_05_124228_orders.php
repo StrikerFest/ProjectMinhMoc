@@ -11,16 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::dropIfExists('orders');
         //crate table
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
+            $table->float('Total_selling_price');
             $table->string('phone');
             $table->string('province');
             $table->string('district');
             $table->string('ward');
             $table->string('address');
+            $table->smallInteger('customer_id');
+            $table->smallInteger('Status');
             $table->timestamps();
         });
     }
@@ -31,5 +35,6 @@ return new class extends Migration
     public function down(): void
     {
         //
+        Schema::dropIfExists('orders');
     }
 };

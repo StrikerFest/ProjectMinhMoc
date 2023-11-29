@@ -26,6 +26,8 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
+        return redirect()->intended('/admin')
+                ->withSuccess('Register successfully');
     }
     // login
     public function login(Request $request)
@@ -76,14 +78,24 @@ class UserController extends Controller
         $countOrderPending = order::where('Status', 0)->count();
         // count order total
         $countOrderTotal = order::count();
-        // percent order cancel
-        $percentOrderCancel = round(($countOrderCancel / $countOrderTotal) * 100, 2);
-        // percent order success
-        $percentOrderSuccess = round(($countOrderSuccess / $countOrderTotal) * 100, 2);
-        // percent order Pending
-        $percentOrderPending = round(($countOrderPending / $countOrderTotal) * 100, 2);
-        // percent order Processing
-        $percentOrderProcessing = round(($countOrderProcessing / $countOrderTotal) * 100, 2);
+
+        // Check if countOrderTotal not empty
+        if(!empty($countOrderTotal)){
+            // percent order cancel
+            $percentOrderCancel = round(($countOrderCancel/$countOrderTotal)*100,2);
+            // percent order success
+            $percentOrderSuccess =round(($countOrderSuccess/$countOrderTotal)*100,2);
+            // percent order Pending
+            $percentOrderPending = round(($countOrderPending/$countOrderTotal)*100,2) ;
+            // percent order Processing
+            $percentOrderProcessing = round(($countOrderProcessing/$countOrderTotal)*100,2);
+        } else {
+            $percentOrderCancel = 0;
+            $percentOrderSuccess = 0;
+            $percentOrderPending = 0;
+            $percentOrderProcessing = 0;
+        }
+
         // count order in month in year
         $countOrderInMonthInYear = order::whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
         //count order in month january
