@@ -24,46 +24,83 @@ use App\Http\Livewire\Home;
 |
 */
 
-// register Admin
+// ADMIN - LOGIN AND REGISTER =================================
+
+// register
 Route::get('/admin/register', function () {
     return view('admin.register');
 });
-// register Admin
+
+// register process
 Route::post('/admin/newAdmin', [UserController::class,'register']);
-//using middleware to check if user is admin
-// login Admin
+
+// login
 Route::get('/admin/login', function () {
     return view('admin.login');
 });
+
 Route::post('/login', [UserController::class,'login']);
-// Admin Routes
+
+// ADMIN - DASHBOARD =================================
+
 Route::get('/admin', [UserController::class,'index'])->middleware('admin');
+
+// ADMIN - PRODUCT
+
 Route::get('/admin/product', [ProductController::class,'index'])->middleware('admin');
+
+// statistical
+Route::get('/admin/statistical', [HomeController::class,'statistical'])->middleware('admin');
+
+// get monthly and yearly
+Route::post('/admin/monyear', [HomeController::class,'monyear']);
+
+// ADMIN - CATEGORY =================================
+
+// view all
 Route::get('/admin/category', [ProductCatergoryController::class,'index'])->middleware('admin');
-// add product category
+
+// add
 Route::post('/admin/addCategory', [ProductCatergoryController::class,'addCategory']);
-// edit product category
+
+// edit
 Route::post('/admin/editCategory/{id}', [ProductCatergoryController::class,'editCategory']);
-// view all categories
-// view purchase
+
+// ADMIN - PURCHASE =================================
+
+// view
 Route::get('/admin/purchase', [PurchaseController::class,'index'])->middleware('admin');
-// edit purchase
+
+// edit
 Route::get('/admin/edit-purchase/{id}', [PurchaseController::class,'editPurchase']);
-// add product
+
+// ADMIN - PRODUCT =================================
+
+// add
 Route::get('/admin/product/addProduct',[ProductController::class,'addProduct'])->middleware('admin');
-// delete product
+Route::post('/admin/addNewProduct2',[ProductController::class,'addNewProduct']);
+
+// delete
 Route::get('/admin/product/deleteProduct/{id}',[ProductController::class,'deleteProduct']);
-// edit product
+
+// edit
 Route::post('/admin/product/editProduct/{id}',[ProductController::class,'editProduct']);
+
 Route::get('/admin/product/editProductview/{id}',[ProductController::class,'editProductview']);
+
 // get product by id
 Route::get('/admin/product/getProductById/{id}',[ProductController::class,'getProductById']);
 
-Route::post('/admin/addNewProduct2',[ProductController::class,'addNewProduct']);
+// ADMIN - ORDER =================================
+
 // filter order
 Route::get('/admin/filterOrder/{id}',[HomeController::class,'filterOrder']);
+
 // search order by phone
 Route::post('/admin/searchOrder',[HomeController::class,'searchOrder']);
+
+// IMAGE PROCESSING =================================
+
 // get image
 Route::get('storage/{filename}', function ($filename)
 {
@@ -81,87 +118,80 @@ Route::get('storage/{filename}', function ($filename)
 
     return $response;
 });
-// view all comments
+
+// ADMIN - COMMENT =================================
+
+// view all
 Route::get('/admin/comment',[CommentController::class,'index']);
-// delete comment
+
+// delete
 Route::get('/admin/comment/deleteComment/{id}',[CommentController::class,'deleteComment']);
 
+// ADMIN - CUSTOMER =================================
 
-// view customer
+// view
 Route::get('/admin/customer', function () {
     // view all customer sort newest
     $customer = DB::table('customers')->orderBy('id', 'desc')->get();
     return view('admin.customer',['customer'=>$customer]);
 })->middleware('admin');
 
-
 // test
-Route::get('/test', [HomeController::class,'test']);
-
-// statistical
-Route::get('/admin/statistical', [HomeController::class,'statistical'])->middleware('admin');
-// get monthly and yearly
-Route::post('/admin/monyear', [HomeController::class,'monyear']);
+// Route::get('/test', [HomeController::class,'test']);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --------------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 // ---------------------------------------------------------Customer----------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
 // --------------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------------
-// --------------------------------------------------------------------------------------------------------------------
 
 
-// Customer Routes
+// CUSTOMER - INDEX =================================
+
 Route::get('/home',[HomeController::class,'index']);
 Route::get('',[HomeController::class,'index']);
-// single product
+
+// CUSTOMER - PRODUCT =================================
+
 Route::get('/single-product/{id}',[HomeController::class,'singleProduct']);
-// cart
-Route::get('/cart', function () {
-    return view('customer.cart');
-});
-// checkout
-Route::get('/checkout', function () {
-    return view('customer.checkout');
-});
-// add to cart
-Route::get('/add-to-cart/{id}',[HomeController::class,'addToCart']);
 
 // view all product
 Route::get('/all-product/{id}',[HomeController::class,'allProduct']);
-// login customer
+
+// CUSTOMER - CART =================================
+
+Route::get('/cart', function () {
+    return view('customer.cart');
+});
+
+// add to cart
+Route::get('/add-to-cart/{id}',[HomeController::class,'addToCart']);
+
+// CUSTOMER - CHECKOUT =================================
+
+Route::get('/checkout', function () {
+    return view('customer.checkout');
+});
+
+// CUSTOMER - LOGIN AND REGISTER =================================
+
+// login 
 Route::get('/loginCustomer', function () {
     return view('customer.login');
 });
-// register customer
+
+// register
 Route::post("/registerCustomer",[HomeController::class,'registerCustomer']);
-// login customer
+
+// login
 Route::post("/SignUpCustomer",[HomeController::class,'loginCustomer']);
-// logout customer
+
+// logout
 Route::get("/logoutCustomer",[HomeController::class,'logoutCustomer']);
+
+// CUSTOMER - ORDER =================================
+
 // order
 Route::post("/order",[HomeController::class,'order']);
 // get order
@@ -169,18 +199,22 @@ Route::get("/allorder",[HomeController::class,'allOrder']);
 // get orders details by order id
 Route::get("/orderDetails/{id}",[HomeController::class,'orderDetails']);
 
-// my account
+// CUSTOMER - MY ACCOUNT =================================
+
 Route::get("/myAccount",[HomeController::class,'myAccount']);
 
-// logout customer
 // change status order
 Route::get("/changeStatus/{id}",[HomeController::class,'updateStatusOrder']);
+
 // change status order cancel
 Route::get("/changeStatusCancel/{id}",[HomeController::class,'updateStatusOrderCancel']);
+
 // customer address
 Route::post("/customeraddress",[HomeController::class,'customerAddress']);
+
 // set address
 Route::get("/setAddress/{id}",[HomeController::class,'setAddress']);
+
 //contact
 Route::get("/contact", function () {
     return view('customer.contact');

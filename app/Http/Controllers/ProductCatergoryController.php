@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\product_catergory;
 class ProductCatergoryController extends Controller
 {
-    // view 
+    // view
     public function index()
     {
         $productCategory = product_catergory::all();
@@ -15,19 +15,25 @@ class ProductCatergoryController extends Controller
     // view all category
     public function viewAllCategory()
     {
-       
+
     }
     public function addCategory(Request $request)
     {
+        // Validate if empty
+        if (empty($request->name)) {
+            return redirect()->back()->with('error', 'Name is required');
+        }
+
         $productCategory = product_catergory::create([
             'name' => $request->name,
         ]);
+
         return redirect()->back()->with('success', 'Category Added Successfully');
     }
     // update category
     public function editCategory(Request $request, $id)
     {
-        
+
         $productCategory = product_catergory::find($id);
         $productCategory->name = $request->name;
         $productCategory->save();

@@ -183,7 +183,6 @@ class UserController extends Controller
                 'monthly_revenue' => $monthly_revenue,
                 'countRevenueInMonthInYear' => $countRevenueInMonthInYear,
                 'RevenueInmoth'=>$RevenueInmoth,
-                'countRevenueInMonthInYear'=>$countRevenueInMonthInYear,
                 'countRevenueInLastMonth'=>$countRevenueInLastMonth,
                 'top5Product'=>$top5Product
             ]
