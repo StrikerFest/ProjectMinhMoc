@@ -121,6 +121,7 @@
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <h5 class="card-title product-title"></h5>
+                                            <p class="card-text product-description"></p>
                                             <p class="card-text product-quantity"></p>
                                             <p class="card-text product-price"></p>
                                             <p class="card-text export_price"></p>
@@ -234,14 +235,13 @@
             const import_price = productCard.querySelector('.import_price').textContent;
             const export_price = productCard.querySelector('.export_price').textContent;
             const description = productCard.querySelector('.descrption').textContent;
-
             // Hiển thị thông tin sản phẩm trong popup
             productTitle.textContent = title;
             productImage.src = imageSrc;
             productQuantity.textContent = `Số lượng: ${quantity}`;
-            productPrice.textContent = `${import_price}`;
-            productDescription.textContent = description;
-            exportPrice.textContent = `${export_price}`;
+            productPrice.textContent = `Giá nhập: ${import_price} VND`;
+            productDescription.innerHTML  = description;
+            exportPrice.textContent = `Giá xuất: ${export_price} VND`;
             openPopup();
         });
     });
