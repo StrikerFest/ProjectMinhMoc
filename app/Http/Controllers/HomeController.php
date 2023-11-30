@@ -597,6 +597,10 @@ class HomeController extends Controller
     {
         // Lấy mã khách hàng từ session
         $customer = session()->get('customer');
+
+        if (!$customer) {
+            return redirect('/loginCustomer')->with('error', 'Mời quý khách đăng nhập trước');
+        }
         $customer_id = $customer->id;
 
         // Lấy thông tin khách hàng
