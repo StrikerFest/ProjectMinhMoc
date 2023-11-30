@@ -26,15 +26,15 @@ use App\Http\Livewire\Home;
 
 // ADMIN - LOGIN AND REGISTER =================================
 
-// register
+// Đăng ký
 Route::get('/admin/register', function () {
     return view('admin.register');
 });
 
-// register process
+// Xữ lý đăng ký
 Route::post('/admin/newAdmin', [UserController::class,'register']);
 
-// login
+// Đăng nhập
 Route::get('/admin/login', function () {
     return view('admin.login');
 });
@@ -45,61 +45,62 @@ Route::post('/login', [UserController::class,'login']);
 
 Route::get('/admin', [UserController::class,'index'])->middleware('admin');
 
-// statistical
+// statistical - thống kê
 Route::get('/admin/statistical', [HomeController::class,'statistical'])->middleware('admin');
 
-// get monthly and yearly
+// thống kê theo tháng và năm
 Route::post('/admin/monyear', [HomeController::class,'monyear']);
 
 // ADMIN - CATEGORY =================================
 
-// view all
+// xem tất cả
 Route::get('/admin/category', [ProductCatergoryController::class,'index'])->middleware('admin');
 
-// add
+// thêm
 Route::post('/admin/addCategory', [ProductCatergoryController::class,'addCategory']);
 
-// edit
+// chỉnh sửa
 Route::post('/admin/editCategory/{id}', [ProductCatergoryController::class,'editCategory']);
 
 // ADMIN - PURCHASE =================================
 
-// view
+// xem
 Route::get('/admin/purchase', [PurchaseController::class,'index'])->middleware('admin');
 
-// edit
+// chỉnh sửa
 Route::get('/admin/edit-purchase/{id}', [PurchaseController::class,'editPurchase']);
 
 // ADMIN - PRODUCT =================================
 
+// xem
 Route::get('/admin/product', [ProductController::class,'index'])->middleware('admin');
 
-// add
+// thêm
 Route::get('/admin/product/addProduct',[ProductController::class,'addProduct'])->middleware('admin');
 Route::post('/admin/addNewProduct2',[ProductController::class,'addNewProduct']);
 
-// delete
+// xóa
 Route::get('/admin/product/deleteProduct/{id}',[ProductController::class,'deleteProduct']);
 
-// edit
+// chỉnh sửa
 Route::post('/admin/product/editProduct/{id}',[ProductController::class,'editProduct']);
 
 Route::get('/admin/product/editProductview/{id}',[ProductController::class,'editProductview']);
 
-// get product by id
+// lấy sản phẩm theo id
 Route::get('/admin/product/getProductById/{id}',[ProductController::class,'getProductById']);
 
 // ADMIN - ORDER =================================
 
-// filter order
+// lọc đơn
 Route::get('/admin/filterOrder/{id}',[HomeController::class,'filterOrder']);
 
-// search order by phone
+// tìm đơn theo số điện thoại
 Route::post('/admin/searchOrder',[HomeController::class,'searchOrder']);
 
 // IMAGE PROCESSING =================================
 
-// get image
+// xử lý ảnh
 Route::get('storage/{filename}', function ($filename)
 {
     $path = storage_path('public/images' . $filename);
@@ -119,17 +120,18 @@ Route::get('storage/{filename}', function ($filename)
 
 // ADMIN - COMMENT =================================
 
-// view all
+// xem tất cả
 Route::get('/admin/comment',[CommentController::class,'index']);
 
-// delete
+// xóa
 Route::get('/admin/comment/deleteComment/{id}',[CommentController::class,'deleteComment']);
 
 // ADMIN - CUSTOMER =================================
 
-// view
+// xem
 Route::get('/admin/customer', function () {
-    // view all customer sort newest
+
+    // xem khách hàng mới nhất
     $customer = DB::table('customers')->orderBy('id', 'desc')->get();
     return view('admin.customer',['customer'=>$customer]);
 })->middleware('admin');
@@ -154,7 +156,7 @@ Route::get('',[HomeController::class,'index']);
 
 Route::get('/single-product/{id}',[HomeController::class,'singleProduct']);
 
-// view all product
+// xem tất cả sản phẩm
 Route::get('/all-product/{id}',[HomeController::class,'allProduct']);
 
 // CUSTOMER - CART =================================
@@ -163,7 +165,7 @@ Route::get('/cart', function () {
     return view('customer.cart');
 });
 
-// add to cart
+// thêm vào giỏ hàng
 Route::get('/add-to-cart/{id}',[HomeController::class,'addToCart']);
 
 // CUSTOMER - CHECKOUT =================================
@@ -174,46 +176,48 @@ Route::get('/checkout', function () {
 
 // CUSTOMER - LOGIN AND REGISTER =================================
 
-// login
+// đăng nhập
 Route::get('/loginCustomer', function () {
     return view('customer.login');
 });
 
-// register
+// đăng ký
 Route::post("/registerCustomer",[HomeController::class,'registerCustomer']);
 
-// login
+// xử lý đăng nhập
 Route::post("/SignUpCustomer",[HomeController::class,'loginCustomer']);
 
-// logout
+// đăng xuất
 Route::get("/logoutCustomer",[HomeController::class,'logoutCustomer']);
 
 // CUSTOMER - ORDER =================================
 
-// order
+// xem đơn
 Route::post("/order",[HomeController::class,'order']);
-// get order
+
+// lấy tất cả đơn
 Route::get("/allorder",[HomeController::class,'allOrder']);
-// get orders details by order id
+
+// lấy chi tiết đơn từ mã đơn
 Route::get("/orderDetails/{id}",[HomeController::class,'orderDetails']);
 
 // CUSTOMER - MY ACCOUNT =================================
 
 Route::get("/myAccount",[HomeController::class,'myAccount']);
 
-// change status order
+// đổi trạng thái đơn
 Route::get("/changeStatus/{id}",[HomeController::class,'updateStatusOrder']);
 
-// change status order cancel
+// hủy đơn
 Route::get("/changeStatusCancel/{id}",[HomeController::class,'updateStatusOrderCancel']);
 
-// customer address
+// địa chỉ khách hàng
 Route::post("/customeraddress",[HomeController::class,'customerAddress']);
 
-// set address
+// đặt địa chỉ
 Route::get("/setAddress/{id}",[HomeController::class,'setAddress']);
 
-//contact
+// liên hệ
 Route::get("/contact", function () {
     return view('customer.contact');
 });

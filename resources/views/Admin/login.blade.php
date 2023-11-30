@@ -145,6 +145,7 @@
                 $(".switcher-wrapper").removeClass("switcher-toggled")
             });
 
+        // TODO: CLEAN THIS
         $('#theme1').click(theme1);
         $('#theme2').click(theme2);
         $('#theme3').click(theme3);
