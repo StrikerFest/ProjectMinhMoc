@@ -1,7 +1,5 @@
 @extends('customer.layout.default')
 @section('content')
-
-
 <main class="main-content">
     <div class="breadcrumb-area breadcrumb-height"
         data-bg-image="{{ asset('assets_customers/assets/images/breadcrumb/bg/1-1-1919x388.jpg') }}">
@@ -39,10 +37,6 @@
                             <a class="nav-link" id="account-address-tab" data-bs-toggle="tab" href="#account-address"
                                 role="tab" aria-controls="account-address" aria-selected="false">Địa Chỉ</a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details"
-                                role="tab" aria-controls="account-details" aria-selected="false">Account Details</a>
-                        </li> -->
                         <li class="nav-item">
                             <a class="nav-link" id="account-logout-tab" href="/logoutCustomer" role="tab"
                                 aria-selected="false">Đăng Xuất</a>
@@ -80,18 +74,18 @@
                                                 trạng thái
                                             </td>
                                         </tr>
-                                        @foreach($addressCustomer as $addressCustomer)
+                                        @foreach($addressCustomer as $addressCustomer1)
                                             <tr>
 
                                                 <td>
-                                                    <p>{{ $addressCustomer -> address }} ,
-                                                        {{ $addressCustomer -> ward }},{{ $addressCustomer->district }},{{ $addressCustomer->province }}
+                                                    <p>{{ $addressCustomer1 -> address }} ,
+                                                        {{ $addressCustomer1 -> ward }},{{ $addressCustomer1->district }},{{ $addressCustomer1->province }}
                                                     </p>
                                                 </td>
-                                                @if($addressCustomer -> status == 1)
+                                                @if($addressCustomer1 -> status == 1)
                                                     <td>Đang sử dụng</td>
                                                 @else
-                                                    <td><a href="/setAddress/{{ $addressCustomer -> id }}">Đặt làm
+                                                    <td><a href="/setAddress/{{ $addressCustomer1 -> id }}">Đặt làm
                                                             mặc định</a></td>
                                                 @endif
 
@@ -106,47 +100,6 @@
                                     </a>
                             </div>
                         </div>
-                        <!-- <div class="tab-pane fade" id="account-details" role="tabpanel"
-                            aria-labelledby="account-details-tab">
-                            <div class="myaccount-details">
-                                <form action="#" class="myaccount-form">
-                                    <div class="myaccount-form-inner">
-                                        <div class="single-input single-input-half">
-                                            <label>First Name*</label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="single-input single-input-half">
-                                            <label>Last Name*</label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="single-input">
-                                            <label>Email*</label>
-                                            <input type="email">
-                                        </div>
-                                        <div class="single-input">
-                                            <label>Current Password(leave blank to leave
-                                                unchanged)</label>
-                                            <input type="password">
-                                        </div>
-                                        <div class="single-input">
-                                            <label>New Password (leave blank to leave
-                                                unchanged)</label>
-                                            <input type="password">
-                                        </div>
-                                        <div class="single-input">
-                                            <label>Confirm New Password</label>
-                                            <input type="password">
-                                        </div>
-                                        <div class="single-input">
-                                            <button class="btn btn-custom-size lg-size btn-pronia-primary"
-                                                type="submit">
-                                                <span>SAVE CHANGES</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>

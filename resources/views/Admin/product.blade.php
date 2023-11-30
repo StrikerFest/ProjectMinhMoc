@@ -32,19 +32,6 @@
             <div class="col">
                 <div class="card">
                     <img src="{{ asset('storage/images/'. $product1->image ) }}" class="card-img-top" alt="...">
-                    <div class="">
-                        <!-- @if($product1->quantity > 10)
-                                <div class="position-absolute top-0 end-0 m-3 product-discount"><span class=""
-                                        style="color:black"> Còn Hàng</span> </div>
-                                <blade
-                                    elseif|%20(%24product1-%3Equantity%20%3E%200%20%26%26%20%24product-%3Equantity%20%3C%2010)%0D />
-                                <div class="position-absolute top-0 end-0 m-3 product-discount"><span class=""
-                                        style="color:yellow"> sắp hết Hàng</span> </div>
-@elseif($product1->quantity == 0)
-                                <div class="position-absolute top-0 end-0 m-3 product-discount"><span class=""
-                                        style="color:red"> Hết Hàng</span> </div>
-@endif-->
-                    </div>
                     <div class="card-body">
                         <h6 class="card-title cursor-pointer">{{ $product1->name }}</h6>
                         <div class="clearfix">
@@ -107,11 +94,6 @@
             <div class="modal-body">
                 <div id="popup" class="popup">
                     <div class="popup-content">
-                        <!-- <h3 class="product-title"></h3> -->
-                        <!-- <img class="product-image" src="" alt=""> -->
-                        <!-- <p class="product-quantity"></p>
-                            <p class="product-price"></p>
-                            <p class="product-description"></p> -->
                         <div class="col">
                             <div class="card">
                                 <div class="row g-0">
@@ -322,7 +304,7 @@
                 <div class="card-body p-4">
                         <form action="/admin/product/editProduct/${id}" method="post" enctype="multipart/form-data">
                             {{ Method_field('POST') }}
-@csrf
+                            @csrf
                             <div class="form-body mt-4">
                                 <div class="row">
                                     <div class="col-lg-8">
@@ -352,9 +334,9 @@
                                                 <div class="col-12">
                                                     <label for="inputProductType" class="form-label">Loại Cây</label>
                                                     <select name="id_category" class="form-select" id="inputProductType">
-@foreach($productCategory as $productCategory)
+                                                        @foreach($productCategory as $productCategory)
                                                         <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
-@endforeach
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                                 <div class="col-12">

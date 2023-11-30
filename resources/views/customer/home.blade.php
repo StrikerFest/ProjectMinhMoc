@@ -104,11 +104,6 @@
                 <div class="banner-img">
                     <img src="{{asset('assets_customers/assets/images/banner/banner3.png')}}" alt="Banner Image">
                 </div>
-                <!-- <div class="banner-content text-position-center">
-                    <div class="button-wrap">
-                        <a class="btn btn-custom-size lg-size btn-pronia-primary" href="shop.html">Xem Thêm</a>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -116,14 +111,6 @@
                 <div class="banner-img">
                     <img src="{{asset('assets_customers/assets/images/banner/banner4.png')}}" alt="Banner Image">
                 </div>
-                <!-- <div class="banner-content text-position-center">
-                    <span class="collection">New Collection</span>
-                    <h3 class="title">Plant Port</h3>
-                    <div class="button-wrap">
-                        <a class="btn btn-custom-size lg-size btn-pronia-primary" href="shop.html">Shop
-                            Now</a>
-                    </div>
-                </div> -->
             </div>
         </div>
         <div class="col-lg-8">

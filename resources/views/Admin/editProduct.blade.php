@@ -18,16 +18,8 @@
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <!-- <button type="button" class="btn btn-light">Settings</button>
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
-                                data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-                            </button> -->
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
                                 href="javascript:;">Action</a>
-                            <!-- <a class="dropdown-item" href="javascript:;">Another action</a>
-                                <a class="dropdown-item" href="javascript:;">Something else here</a>
-                                <div class="dropdown-divider"></div> <a class="dropdown-item"
-                                    href="javascript:;">Separated link</a> -->
                         </div>
                     </div>
                 </div>
@@ -67,7 +59,7 @@
                                 <div class="col-lg-4">
                                     <div class="border border-3 p-4 rounded">
                                         <div class="row g-3">
-                                           
+
                                             <div class="col-md-6">
                                                 <label for="inputCostPerPrice" class="form-label">Giá Bán</label>
                                                 <input type="number" value="{{$product->export_price}}" name="export_price" class="form-control"
@@ -81,9 +73,9 @@
                                             <div class="col-12">
                                                 <label for="inputProductType" class="form-label">Loại Cây</label>
                                                 <select name="id_category" class="form-select" id="inputProductType">
-                                                    @foreach($productCategory as $productCategory)
-                                                        <option value="{{ $productCategory->id }}">
-                                                            {{ $productCategory->name }}</option>
+                                                    @foreach($productCategory as $productCategory1)
+                                                        <option value="{{ $productCategory1->id }}">
+                                                            {{ $productCategory1->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -96,6 +88,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                             <!--end row-->
                     </form>
                 </div>

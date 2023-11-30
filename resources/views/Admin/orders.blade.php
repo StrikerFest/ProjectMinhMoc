@@ -2,8 +2,6 @@
 @section('content')
 <div class="page-wrapper">
     <div class="page-content">
-
-
         <div class="card radius-10">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -20,8 +18,6 @@
                                 </button>
                             </div>
                         </form>
-
-
                     </div>
                     <div class="font-22 ms-auto">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -99,23 +95,16 @@
                                         @if($item->Status == 1)
                                             <a href="/changeStatus/{{ $item->id }}"><button type="button"
                                                     class="btn btn-light px-5">Đã Vận Chuyển</button></a>
-
                                         @endif
                                     </td>
                                 </tr>
-
                             @endforeach
-
                         </tbody>
-
                     </table>
                     {{ $order->links('admin.vendor.pagination') }}
                 </div>
-
             </div>
         </div>
-
-
     </div>
 </div>
 

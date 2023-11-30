@@ -40,14 +40,11 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-
                     </div>
                 </div>
             </div>
         </div>
         <hr />
-
-
     </div>
     <div class="card">
         <div class="card-body">

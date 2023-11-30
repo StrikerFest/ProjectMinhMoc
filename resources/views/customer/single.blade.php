@@ -62,7 +62,6 @@
                                 <a class="btn btn-custom-size lg-size btn-pronia-primary"
                                     href="/add-to-cart/{{ $product->id }}">Thêm Giỏ Hàng</a>
                             </li>
-
                         </ul>
                     </div>
                 </div>
@@ -94,7 +93,6 @@
                                 {!!$product->description!!}
                             </div>
                         </div>
-
                       @livewire('comment', ['product_id' => $product->id])
                     </div>
                 </div>
@@ -148,7 +146,6 @@
         </div>
     </div>
     <!-- Product Area End Here -->
-
 </main>
 
 @endsection

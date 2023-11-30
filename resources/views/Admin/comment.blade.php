@@ -17,16 +17,8 @@
                 </div>
                 <div class="ms-auto">
                     <div class="btn-group">
-                        <!-- <button type="button" class="btn btn-light">Settings</button>
-                            <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"
-                                data-bs-toggle="dropdown"> <span class="visually-hidden">Toggle Dropdown</span>
-                            </button> -->
                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
                                 href="javascript:;">Action</a>
-                            <!-- <a class="dropdown-item" href="javascript:;">Another action</a>
-                                <a class="dropdown-item" href="javascript:;">Something else here</a>
-                                <div class="dropdown-divider"></div> <a class="dropdown-item"
-                                    href="javascript:;">Separated link</a> -->
                         </div>
                     </div>
                 </div>
@@ -65,14 +57,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
-
-
-
-
 
 <div class="modal fade" id="exampleDangerModal" tabindex="-1" aria-hidden="true" style="z-index: 999;">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -82,10 +67,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body text-white">
-
             </div>
             <div class="modal-footer">
-
             </div>
         </div>
     </div>
