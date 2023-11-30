@@ -9,6 +9,11 @@ class Cart extends Component
     protected $listeners = ['showCart'];
     public $cart;
 
+    public function showCart($product)
+    {
+
+    }
+
     // Xóa sản phẩm trong cart
     public function delete($id)
     {

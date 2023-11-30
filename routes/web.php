@@ -171,7 +171,12 @@ Route::get('/add-to-cart/{id}',[HomeController::class,'addToCart']);
 // CUSTOMER - CHECKOUT =================================
 
 Route::get('/checkout', function () {
-    return view('customer.checkout');
+    $cart = session()->get('cart');
+    if ($cart) {
+        return view('customer.checkout');
+    } else {
+        return view('customer.cart');
+    }
 });
 
 // CUSTOMER - LOGIN AND REGISTER =================================

@@ -44,16 +44,6 @@
                                 </form>
                             </div>
                         </div>
-                        <!-- <div id="checkout_coupon" class="coupon-checkout-content">
-                            <div class="coupon-info">
-                                <form action="javascript:void(0)">
-                                    <p class="checkout-coupon">
-                                        <input placeholder="Coupon code" type="text">
-                                        <input class="coupon-inner_btn" value="Apply Coupon" type="submit">
-                                    </p>
-                                </form>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
