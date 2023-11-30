@@ -38,14 +38,6 @@
                                             <div class="product-add-action">
                                                 <ul>
                                                     <li>
-                                                        <a href="wishlist.html" data-tippy="Add to wishlist"
-                                                            data-tippy-inertia="true" data-tippy-animation="shift-away"
-                                                            data-tippy-delay="50" data-tippy-arrow="true"
-                                                            data-tippy-theme="sharpborder">
-                                                            <i class="pe-7s-like"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
                                                         <a href="/add-to-cart/{{$item->id}}" data-tippy="Add to cart"
                                                             data-tippy-inertia="true" data-tippy-animation="shift-away"
                                                             data-tippy-delay="50" data-tippy-arrow="true"

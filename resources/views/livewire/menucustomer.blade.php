@@ -127,11 +127,6 @@
                                         @endif
                                     </ul>
                                 </li>
-                                <!-- <li class="d-none d-lg-block">
-                                            <a href="wishlist.html">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li> -->
                                 @livewire('minicart')
                                     <li class="mobile-menu_wrap d-block d-lg-none">
                                         <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">

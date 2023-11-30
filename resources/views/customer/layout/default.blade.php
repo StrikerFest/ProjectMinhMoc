@@ -97,11 +97,6 @@
                                                 @endif
                                             </ul>
                                         </li>
-                                        <li class="d-none d-lg-block">
-                                            <a href="wishlist.html">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
-                                        </li>
                                         @livewire('minicart')
                                         <li class="mobile-menu_wrap d-block d-lg-none">
                                             <a href="#mobileMenu" class="mobile-menu_btn toolbar-btn pl-0">
@@ -129,8 +124,6 @@
                         </div>
                         <div class="offcanvas-user-info">
                             <ul class="dropdown-wrap">
-
-
                                 <li class="dropdown">
                                     <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button"
                                         id="settingButtonTwo" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,11 +134,6 @@
                                         <li><a class="dropdown-item" href="/loginCustomer">Login | Register</a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">
-                                        <i class="pe-7s-like"></i>
-                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -347,11 +335,6 @@
                                             <a class="btn btn-custom-size lg-size btn-pronia-primary"
                                                 href="cart.html">Add to
                                                 cart</a>
-                                        </li>
-                                        <li class="wishlist-btn-wrap">
-                                            <a class="custom-circle-btn" href="wishlist.html">
-                                                <i class="pe-7s-like"></i>
-                                            </a>
                                         </li>
                                         <li class="compare-btn-wrap">
                                             <a class="custom-circle-btn" href="compare.html">

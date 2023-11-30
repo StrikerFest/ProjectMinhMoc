@@ -9,11 +9,11 @@
                             data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50"
                             data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
                 </div>
-                
+
                     <ul class="minicart-list">
                     @foreach($cart as $item)
                         <li class="minicart-product">
-                          
+
                             <a class="product-item_img">
                                 <img class="img-full"
                                     src="http://127.0.0.1:8000/storage/images/{{ $item['image'] }}"
@@ -27,7 +27,7 @@
                         </li>
                         @endforeach
                     </ul>
-               
+
             </div>
             <div class="minicart-item_total">
                 <span>Tổng Tiền: </span>
