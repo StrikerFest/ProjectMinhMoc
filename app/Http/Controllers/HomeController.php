@@ -72,6 +72,7 @@ class HomeController extends Controller
         $productLastest2 = product::where('Is_Active', 0)->orderBy('id', 'desc')->take(4)->get();
         return view('customer.home', ['productLastest' => $productLastest], ['productLastest2' => $productLastest2]);
     }
+
     // product category
 
     // single product
@@ -274,7 +275,8 @@ class HomeController extends Controller
             $order->save();
 
             session()->forget('cart');
-            return redirect()->back()->with('alert', 'Đặt hàng thành công!');
+            // return redirect()->back()->with('alert', 'Đặt hàng thành công!');
+            return view('customer.order.success', ['id' => $order->id]);
         }
     }
     // mail
@@ -289,7 +291,7 @@ class HomeController extends Controller
 
         $email = order::where('id', $id)->first()->email;
         Mail::to($email)->send(new orderMail($data));
-        return redirect()->back()->with('success', 'Gửi mail thành công!');
+        // return redirect()->back()->with('success', 'Gửi mail thành công!');
     }
     // test
     public function test(Request $request)
