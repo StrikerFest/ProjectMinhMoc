@@ -4,7 +4,7 @@
     <div class="page-content">
         <div style="height: 600px;">
 
-            <h6 class="mb-0 text-uppercase">Dark Table</h6>
+            <h6 class="mb-0 text-uppercase">Khách hàng</h6>
             <hr />
             <div class="card">
                 <div class="card-body">
