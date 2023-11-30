@@ -27,7 +27,7 @@ use App\Http\Livewire\Home;
 // ADMIN - LOGIN AND REGISTER =================================
 
 // Đăng ký
-Route::get('/admin/register', function () {
+Route::get('/admin/register/secret-key/validate', function () {
     return view('admin.register');
 });
 
