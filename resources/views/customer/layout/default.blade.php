@@ -50,8 +50,6 @@
         </div>
     </div>
     <div class="main-wrapper">
-
-        <!-- Begin Main Header Area -->
         <header class="main-header-area">
             <div class="header-top bg-pronia-primary d-none d-lg-block">
                 <div class="container">
@@ -65,7 +63,7 @@
                             <div class="header-middle-wrap position-relative">
                                 <div class="header-contact d-none d-lg-flex">
                                     <i class="pe-7s-call"></i>
-                                    <a href="tel://0942603115">0942603115</a>
+                                    <a href="tel://0326704093">0326704093</a>
                                 </div>
 
                                 <a href="/home" class="header-logo">
@@ -74,12 +72,6 @@
 
                                 <div class="header-right">
                                     <ul>
-                                        <!-- <li>
-                                            <a href="#exampleModal" class="search-btn bt" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">
-                                                <i class="pe-7s-search"></i>
-                                            </a>
-                                        </li> -->
                                         <li class="dropdown d-none d-lg-block">
                                             <button class="btn btn-link dropdown-toggle ht-btn p-0" type="button"
                                                 id="settingButton" data-bs-toggle="dropdown" aria-label="setting"
@@ -112,6 +104,7 @@
             </div>
             @livewire('menucustomer')
 
+            {{-- Cho điện thoại --}}
             <div class="mobile-menu_wrapper" id="mobileMenu">
                 <div class="offcanvas-body">
                     <div class="inner-body">
@@ -120,7 +113,7 @@
                         </div>
                         <div class="header-contact offcanvas-contact">
                             <i class="pe-7s-call"></i>
-                            <a href="tel://0942603115">0942603115</a>
+                            <a href="tel://0326704093">0326704093</a>
                         </div>
                         <div class="offcanvas-user-info">
                             <ul class="dropdown-wrap">
@@ -137,17 +130,11 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="offcanvas-menu_area">
-                            <nav class="offcanvas-navigation">
-
-                            </nav>
-                        </div>
                     </div>
                 </div>
             </div>
             @livewire('cart')
         </header>
-        <!-- Main Header Area End Here -->
 
         @yield('content')
 
@@ -279,120 +266,18 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 pt-5 pt-lg-0">
-                                <div class="single-product-content">
-                                    <h2 class="title">American Marigold</h2>
-                                    <div class="price-box">
-                                        <span class="new-price">$23.45</span>
-                                    </div>
-                                    <div class="rating-box-wrap">
-                                        <div class="rating-box">
-                                            <ul>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                                <li><i class="fa fa-star"></i></li>
-                                            </ul>
-                                        </div>
-                                        <div class="review-status">
-                                            <a href="#">( 1 Review )</a>
-                                        </div>
-                                    </div>
-                                    <div class="selector-wrap color-option">
-                                        <span class="selector-title border-bottom-0">Color</span>
-                                        <select class="nice-select wide border-bottom-0 rounded-0">
-                                            <option value="default">Black & White</option>
-                                            <option value="blue">Blue</option>
-                                            <option value="green">Green</option>
-                                            <option value="red">Red</option>
-                                        </select>
-                                    </div>
-                                    <div class="selector-wrap size-option">
-                                        <span class="selector-title">Size</span>
-                                        <select class="nice-select wide rounded-0">
-                                            <option value="medium">Medium Size & Poot</option>
-                                            <option value="large">Large Size With Poot</option>
-                                            <option value="small">Small Size With Poot</option>
-                                        </select>
-                                    </div>
-                                    <p class="short-desc">Lorem ipsum dolor sit amet, consectetur adipisic elit, sed do
-                                        eiusmod
-                                        tempo incid ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostru
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure
-                                        dolor
-                                        in reprehenderit in voluptate</p>
-                                    <ul class="quantity-with-btn">
-                                        <li class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" value="1" type="text">
-                                            </div>
-                                        </li>
-                                        <li class="add-to-cart">
-                                            <a class="btn btn-custom-size lg-size btn-pronia-primary"
-                                                href="cart.html">Add to
-                                                cart</a>
-                                        </li>
-                                        <li class="compare-btn-wrap">
-                                            <a class="custom-circle-btn" href="compare.html">
-                                                <i class="pe-7s-refresh-2"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <ul class="service-item-wrap pb-0">
-                                        <li class="service-item">
-                                            <div class="service-img">
-                                                <img src="assets/images/shipping/icon/car.png" alt="Shipping Icon">
-                                            </div>
-                                            <div class="service-content">
-                                                <span class="title">Free <br> Shipping</span>
-                                            </div>
-                                        </li>
-                                        <li class="service-item">
-                                            <div class="service-img">
-                                                <img src="assets/images/shipping/icon/card.png" alt="Shipping Icon">
-                                            </div>
-                                            <div class="service-content">
-                                                <span class="title">Safe <br> Payment</span>
-                                            </div>
-                                        </li>
-                                        <li class="service-item">
-                                            <div class="service-img">
-                                                <img src="assets/images/shipping/icon/service.png" alt="Shipping Icon">
-                                            </div>
-                                            <div class="service-content">
-                                                <span class="title">Safe <br> Payment</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal Area End Here -->
-
-        <!-- Begin Scroll To Top -->
-        <a class="scroll-to-top" href="">
-            <i class="fa fa-angle-double-up"></i>
-        </a>
-        <!-- Scroll To Top End Here -->
 
     </div>
-
-    <!-- Global Vendor, plugins JS -->
-
-    <!-- JS Files
-    ============================================ -->
 
     <script>
         // POPUP alert
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if there is a success message in the session
             @if(session('success'))
                 alert('{{ session('success') }}');
             @elseif (session('error'))
@@ -438,7 +323,6 @@
     <script src="{{ asset('assets_customers/assets/js/plugins/jquery.counterup.js') }}">
     </script>
 
-    <!--Main JS (Common Activation Codes)-->
     <script src="{{ asset('assets_customers/assets/js/main.js') }}"></script>
     @livewireScripts
 </body>

@@ -7,12 +7,11 @@
                 <div class="row h-100">
                     <div class="col-lg-12">
                         <div class="breadcrumb-item">
-                            <h2 class="breadcrumb-heading">Giỏ hàng</h2>
                             <ul>
                                 <li>
                                     <a href="/">Trang Chủ</a>
                                 </li>
-                                <li>Giỏ Hàng</li>
+                                <li>Đặt hàng thành công</li>
                             </ul>
                         </div>
                     </div>
