@@ -10,14 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class PurchaseController extends Controller
 {
-    //
+    // Danh sách purchase
     public function index()
     {
         $products = product::all();
         $purchases = purchase::all();
         return view('admin.purchase', compact('products', 'purchases'));
     }
-    // get name Product By Id
+
+    // Lấy tên và mã sản phẩm theo id
     public function getProductById($id)
     {
         $product = Product::find($id);
@@ -35,7 +36,8 @@ class PurchaseController extends Controller
         // Trả về response JSON với mảng kết quả
         return response()->json($result);
     }
-    // add purchase
+
+    // Thêm purchase
     public function addPurchase(Request $request)
     {
         // Lấy dữ liệu từ request
@@ -61,6 +63,7 @@ class PurchaseController extends Controller
 
             // Cập nhật tổng số tiền
             $total += $product['quantity'] * $product['price'];
+
             // Cập nhật số lượng sản phẩm
             $product = Product::find($product['productId']);
             $product->quantity += $product['quantity'];
@@ -75,7 +78,8 @@ class PurchaseController extends Controller
 
         return response()->json(['message' => 'Purchase thêm thành công'], 200);
     }
-    // get purchase by id
+
+    // Lấy purchase theo mã
     public function getPurchaseById($id)
     {
 
@@ -84,14 +88,17 @@ class PurchaseController extends Controller
         if (!$purchase) {
             return response()->json(['message' => 'Purchase không tìm thấy'], 404);
         }
+
         $purchaseDetails = PurchaseDetail::join('product as p', 'purchase_detail.id_product', '=', 'p.id')
             ->where('purchase_detail.id_purchase', $purchase->id)
             ->select('purchase_detail.id', 'purchase_detail.id_purchase', 'purchase_detail.id_product', 'p.name', 'purchase_detail.quantity', 'purchase_detail.price', DB::raw('purchase_detail.quantity * purchase_detail.price AS total'))
             ->get();
+
         // Trả về response JSON với mảng kết quả
         return response()->json($purchaseDetails);
     }
-    // edit purchase
+
+    // Cập nhật purchase
     public function editPurchase($id)
     {
         $purchase = Purchase::find($id);
@@ -109,11 +116,13 @@ class PurchaseController extends Controller
             ->get();
         return view('admin.editPurchase', compact('purchase', 'purchaseDetails', 'products', 'purchaseId'));
     }
-    // insertPurchaseById
+
+    // Thêm purchase theo mã
     public function insertPurchaseById(request $request)
     {
         $products = $request->input('products');
         $purchaseId = $request->input('purchaseId');
+
         // Tạo đối tượng Purchase và lưu thông tin
         $purchase = Purchase::find($purchaseId);
 
@@ -132,6 +141,7 @@ class PurchaseController extends Controller
 
             // Cập nhật tổng số tiền
             $total += $product['quantity'] * $product['price'];
+
             // Cập nhật số lượng sản phẩm
             $product = Product::find($product['productId']);
             $product->quantity += $product['quantity'];
@@ -146,10 +156,10 @@ class PurchaseController extends Controller
 
         return response()->json(['message' => 'Purchase thêm thành công'], 200);
     }
-    // updatePurchaseById
+
+    // Cập nhật purchase theo mã
     public function updatePurchaseById(request $request)
     {
-
 
         $purchaseDetail = $request->input('data');
         foreach ($purchaseDetail as $item) {
@@ -158,9 +168,11 @@ class PurchaseController extends Controller
             if ($product == null) {
                 return response()->json(['message' => 'Sản phẩm không tìm thấy'], 404);
             } else {
-                // get quantity product
+
+                // Lấy số lượng sản phẩm
                 $quantityProduct = $product->quantity;
-                // get old quantity purchase
+
+                // Lấy số lượng purchase cũ
                 $oldQuantityPurchase = $purchaseDetail->quantity;
                 $purchaseDetail->id_product = $item['idProduct'];
                 $purchaseDetail->quantity = $item['quantity'];

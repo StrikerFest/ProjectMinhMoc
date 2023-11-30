@@ -13,21 +13,23 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // view
+    // Index - Danh sách sản phẩm
     public function index()
     {
         $product = product::paginate(8);
         $productCategory = product_catergory::all();
         return view('admin.product', compact('product', 'productCategory'));
     }
-    // add product category
+
+    // Thêm sản phẩm
     public function addProduct()
     {
         $productCategory = product_catergory::all();
         $product = [];
         return view('admin.addNewProduct', ['productCategory' => $productCategory, 'product' => $product]);
     }
-    // add new product
+
+    // Xử lý thêm sản phẩm
     public function addNewProduct(Request $request)
     {
 
@@ -63,13 +65,14 @@ class ProductController extends Controller
         ]);
         return redirect('/admin/product')->with('success', 'Sản phẩm được thêm thành công');
     }
-    // update quantity = 0
+
+    // Xóa sản phẩm - Chuyển trạng thái sản phẩm
     public function deleteProduct($id)
     {
         $product = product::find($id);
-        // channge Is_Active = 1
 
         $status = $product->Is_Active;
+
         if ($status == 0) {
             $product->Is_Active = 1;
         } else {
@@ -79,10 +82,9 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Sản phẩm thay đổi trạng thái bán thành công');
     }
-    // edit product by id from request
+    // Cập nhật sản phẩm
     public function editProduct(Request $request, $id)
     {
-        // dd($request->all());
         $found = Product::find($id);
         if (!$found) {
             return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
@@ -103,6 +105,8 @@ class ProductController extends Controller
         //    if($validator ->fails()){
         //     return response()->json(['success' => false, 'message' => $validator->errors()], 400);
         //    }
+
+        // Kiểm tra file ảnh có thay đổi không
         if ($request->hasFile('image')) {
             $completeFilename = $request->file('image')->getClientOriginalName();
             $filenameonly = pathinfo($completeFilename, PATHINFO_FILENAME);
@@ -112,6 +116,8 @@ class ProductController extends Controller
         } else {
             $comPic = $found->image;
         }
+
+        // Cập nhật hoặc tạo mới
         $found = Product::updateOrCreate(
             ['id' => $id],
             [
@@ -128,7 +134,7 @@ class ProductController extends Controller
     }
 
 
-    // editProductview
+    // View cập nhật sản phẩm
     public function editProductview($id)
     {
         // join product and product_category
@@ -139,8 +145,7 @@ class ProductController extends Controller
         return view('admin.addNewProduct', ['productCategory' => $productCategory, 'product' => $product]);
     }
 
-
-    // get product by id
+    // Lấy sản phẩm theo id
     public function getProductById($id)
     {
         $product = product::find($id);

@@ -4,24 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\product_catergory;
+
 class ProductCatergoryController extends Controller
 {
-    // view
+    // Index - Danh sách thể loại sản phẩm
     public function index()
     {
         $productCategory = product_catergory::all();
         return view('admin.product_category', compact('productCategory'));
     }
-    // view all category
-    public function viewAllCategory()
-    {
 
-    }
     public function addCategory(Request $request)
     {
-        // Validate if empty
+        // Validate
         if (empty($request->name)) {
-            return redirect()->back()->with('error', 'Vui lòng nhập tên loại sản phẩm');
+            return redirect()->back()->with('error', 'Vui lòng nhập thể loại sản phẩm');
         }
 
         $productCategory = product_catergory::create([
@@ -30,7 +27,7 @@ class ProductCatergoryController extends Controller
 
         return redirect()->back()->with('success', 'Thể loại thêm thành công');
     }
-    // update category
+    // Cập nhật thể loại
     public function editCategory(Request $request, $id)
     {
 

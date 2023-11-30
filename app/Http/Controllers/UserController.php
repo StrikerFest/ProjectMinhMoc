@@ -12,8 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
-    // return view('admin.index');
-    //register for Admin
+    // Tạo tài khoản mới cho admin
     public function register(Request $request)
     {
         $request->validate([
@@ -29,7 +28,8 @@ class UserController extends Controller
         return redirect()->intended('/admin')
                 ->withSuccess('Đăng ký thành công');
     }
-    // login
+
+    // Đăng nhập cho admin
     public function login(Request $request)
     {
         $request->validate([
@@ -39,21 +39,23 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/admin')
-                ->withSuccess('Đã ăng nhập');
+                ->withSuccess('Đã đăng nhập');
         }
         return redirect()->route('/admin');
     }
+
+    // Dashboard admin
     public function index()
     {
-        // count product
+        // Đếm sản phẩm - Khách hàng - Đơn hàng
         $countProduct = product::count();
-        // count customer
         $countCustomer = customer::count();
-        // count order
         $CountOrder = order::count();
-        // new customer
+
+        // Danh sách khách hàng mới (5 khách hàng)
         $newCustomer = customer::orderBy('id', 'desc')->take(5)->get();
-        // find top 10 product buyest
+
+        // Tìm top 10 sản phẩm
         $top10Product = DB::table('orders_details')
             ->join('product', 'orders_details.product_id', '=', 'product.id')
             ->select('product.name', 'product.image as image', DB::raw('count(orders_details.product_id) as total'))
@@ -61,109 +63,72 @@ class UserController extends Controller
             ->orderBy('total', 'desc')
             ->take(5)
             ->get();
-        // top 5 sản phẩm sắp hết hàng
+
+        // Top 5 sản phẩm sắp hết hàng
         $top5Product = DB::table('product')
             ->select('product.name', 'product.image as image', 'product.quantity as quantity')
             ->where('product.quantity', '<', 10)
             ->orderBy('quantity', 'asc')
             ->take(5)
             ->get();
-        // count order cancel
+
+        // Đếm đơn hàng hoãn - thành công - đang xử lý - chờ xử lý - tổng đơn hàng
         $countOrderCancel = order::where('Status', 3)->count();
-        // count order success
         $countOrderSuccess = order::where('Status', 2)->count();
-        // count order processing
         $countOrderProcessing = order::where('Status', 1)->count();
-        // count order pending
         $countOrderPending = order::where('Status', 0)->count();
-        // count order total
         $countOrderTotal = order::count();
 
-        // Check if countOrderTotal not empty
+        // Kiểm tra xem tổng đơn hàng có trống không
         if(!empty($countOrderTotal)){
-            // percent order cancel
+
+            // Tính phần trăm từng loại trạng thái đơn hàng
             $percentOrderCancel = round(($countOrderCancel/$countOrderTotal)*100,2);
-            // percent order success
             $percentOrderSuccess =round(($countOrderSuccess/$countOrderTotal)*100,2);
-            // percent order Pending
             $percentOrderPending = round(($countOrderPending/$countOrderTotal)*100,2) ;
-            // percent order Processing
             $percentOrderProcessing = round(($countOrderProcessing/$countOrderTotal)*100,2);
         } else {
+
+            // Default
             $percentOrderCancel = 0;
             $percentOrderSuccess = 0;
             $percentOrderPending = 0;
             $percentOrderProcessing = 0;
         }
 
-        // count order in month in year
-        $countOrderInMonthInYear = order::whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->count();
-        //count order in month january
-        $countOrderInMonthJanuary = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 1)->count();
-        //count order in month february
-        $countOrderInMonthFebruary = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 2)->count();
-        //count order in month march
-        $countOrderInMonthMarch = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 3)->count();
-        //count order in month april
-        $countOrderInMonthApril = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 4)->count();
-        //count order in month may
-        $countOrderInMonthMay = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 5)->count();
-        //count order in month june
-        $countOrderInMonthJune = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 6)->count();
-        //count order in month july
-        $countOrderInMonthJuly = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 7)->count();
-        //count order in month august
-        $countOrderInMonthAugust = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 8)->count();
-        //count order in month september
-        $countOrderInMonthSeptember = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 9)->count();
-        //count order in month october
-        $countOrderInMonthOctober = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 10)->count();
-        //count order in month november
-        $countOrderInMonthNovember = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 11)->count();
-        //count order in month december
-        $countOrderInMonthDecember = order::whereYear('created_at', date('Y'))->whereMonth('created_at', 12)->count();
-        // count order in month in year
-        $countOrderInMonthInYear = [$countOrderInMonthJanuary, $countOrderInMonthFebruary, $countOrderInMonthMarch, $countOrderInMonthApril, $countOrderInMonthMay, $countOrderInMonthJune, $countOrderInMonthJuly, $countOrderInMonthAugust, $countOrderInMonthSeptember, $countOrderInMonthOctober, $countOrderInMonthNovember, $countOrderInMonthDecember];
-        $countorder = implode(',', $countOrderInMonthInYear);
-        // count product has category id 1
+        // Tính số đơn hàng trong từng tháng trong năm
+        $countOrderInMonthInYear = [];
+
+        for($i = 1; $i <= 12 ; $i++){
+            $countOrderInMonthInYear[] = order::whereYear('created_at', date('Y'))->whereMonth('created_at', $i)->count();
+        }
+
+        $countOrder = implode(',', $countOrderInMonthInYear);
+
+        // Đếm sản phẩm có mã thể loại là 1
         $countProductHasCategoryId1 = product::where('id_category', 1)->count();
-        // count product has category id 2
+        // Đếm sản phẩm có mã thể loại là 2
         $countProductHasCategoryId2 = product::where('id_category', 2)->count();
 
-
+        // Tính tổng doanh thu trong mỗi tháng với trạng thái là 2
         $monthly_revenue = [];
-        // count revenue in month january and status = 2
-        $countRevenueInMonthJanuary = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 1)->sum('Total_selling_price');
-        // count revenue in month february and status = 2
-        $countRevenueInMonthFebruary = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 2)->sum('Total_selling_price');
-        // count revenue in month march and status = 2
-        $countRevenueInMonthMarch = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 3)->sum('Total_selling_price');
-        // count revenue in month april and status = 2
-        $countRevenueInMonthApril = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 4)->sum('Total_selling_price');
-        // count revenue in month may and status = 2
-        $countRevenueInMonthMay = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 5)->sum('Total_selling_price');
-        // count revenue in month june and status = 2
-        $countRevenueInMonthJune = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 6)->sum('Total_selling_price');
-        // count revenue in month july and status = 2
-        $countRevenueInMonthJuly = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 7)->sum('Total_selling_price');
-        // count revenue in month august and status = 2
-        $countRevenueInMonthAugust = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 8)->sum('Total_selling_price');
-        // count revenue in month september and status = 2
-        $countRevenueInMonthSeptember = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 9)->sum('Total_selling_price');
-        // count revenue in month october and status = 2
-        $countRevenueInMonthOctober = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 10)->sum('Total_selling_price');
-        // count revenue in month november and status = 2
-        $countRevenueInMonthNovember = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 11)->sum('Total_selling_price');
-        // count revenue in month december and status = 2
-        $countRevenueInMonthDecember = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', 12)->sum('Total_selling_price');
-        // put revenue in $monthly_revenue
-        $monthly_revenue = [$countRevenueInMonthJanuary, $countRevenueInMonthFebruary, $countRevenueInMonthMarch, $countRevenueInMonthApril, $countRevenueInMonthMay, $countRevenueInMonthJune, $countRevenueInMonthJuly, $countRevenueInMonthAugust, $countRevenueInMonthSeptember, $countRevenueInMonthOctober, $countRevenueInMonthNovember, $countRevenueInMonthDecember];
+
+        for($i = 1; $i <= 12 ; $i++){
+            $monthly_revenue[] = order::where('status',2)
+                ->whereYear('created_at', date('Y'))
+                ->whereMonth('created_at', $i )
+                ->sum('Total_selling_price');
+        }
+
         $monthly_revenue = implode(',', $monthly_revenue);
-        // count revenue in month
+
+        // Đếm danh thu trong tháng
         $countRevenueInMonthInYear = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m'))->sum('Total_selling_price');
-        // Calculate revenue of the last month
+
+        // Tính doanh thu tháng trước
         $countRevenueInLastMonth = order::where('status',2)->whereYear('created_at', date('Y'))->whereMonth('created_at', date('m')-1)->sum('Total_selling_price');
-        $RevenueInmoth=$countRevenueInMonthInYear-$countRevenueInLastMonth;
+
+        $revenueInMonth = $countRevenueInMonthInYear - $countRevenueInLastMonth;
 
         return view(
             'admin.index',
@@ -177,14 +142,14 @@ class UserController extends Controller
                 'percentOrderSuccess' => $percentOrderSuccess,
                 'percentOrderPending' => $percentOrderPending,
                 'percentOrderProcessing' => $percentOrderProcessing,
-                'countorder' => $countorder,
+                'countorder' => $countOrder,
                 'countProductHasCategoryId1' => $countProductHasCategoryId1,
                 'countProductHasCategoryId2' => $countProductHasCategoryId2,
                 'monthly_revenue' => $monthly_revenue,
                 'countRevenueInMonthInYear' => $countRevenueInMonthInYear,
-                'RevenueInmoth'=>$RevenueInmoth,
-                'countRevenueInLastMonth'=>$countRevenueInLastMonth,
-                'top5Product'=>$top5Product
+                'RevenueInmoth' => $revenueInMonth,
+                'countRevenueInLastMonth' => $countRevenueInLastMonth,
+                'top5Product' => $top5Product
             ]
         );
     }
