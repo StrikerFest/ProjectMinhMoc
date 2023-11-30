@@ -23,7 +23,7 @@ class PurchaseController extends Controller
         $product = Product::find($id);
 
         if (!$product) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
         }
 
         // Tạo một mảng kết quả chỉ chứa mã sản phẩm và tên của sản phẩm
@@ -73,7 +73,7 @@ class PurchaseController extends Controller
 
         // Trả về phản hồi thành công (status code 200) hoặc bất kỳ thông tin nào bạn muốn trả về
 
-        return response()->json(['message' => 'Purchase added successfully'], 200);
+        return response()->json(['message' => 'Purchase thêm thành công'], 200);
     }
     // get purchase by id
     public function getPurchaseById($id)
@@ -82,7 +82,7 @@ class PurchaseController extends Controller
         $purchase = Purchase::find($id);
 
         if (!$purchase) {
-            return response()->json(['message' => 'Purchase not found'], 404);
+            return response()->json(['message' => 'Purchase không tìm thấy'], 404);
         }
         $purchaseDetails = PurchaseDetail::join('product as p', 'purchase_detail.id_product', '=', 'p.id')
             ->where('purchase_detail.id_purchase', $purchase->id)
@@ -144,7 +144,7 @@ class PurchaseController extends Controller
 
         // Trả về phản hồi thành công (status code 200) hoặc bất kỳ thông tin nào bạn muốn trả về
 
-        return response()->json(['message' => 'Purchase added successfully'], 200);
+        return response()->json(['message' => 'Purchase thêm thành công'], 200);
     }
     // updatePurchaseById
     public function updatePurchaseById(request $request)
@@ -156,7 +156,7 @@ class PurchaseController extends Controller
             $purchaseDetail = PurchaseDetail::find($item['id']);
             $product = Product::find($item['idProduct']);
             if ($product == null) {
-                return response()->json(['message' => 'Product not found'], 404);
+                return response()->json(['message' => 'Sản phẩm không tìm thấy'], 404);
             } else {
                 // get quantity product
                 $quantityProduct = $product->quantity;
@@ -170,6 +170,6 @@ class PurchaseController extends Controller
                 $purchaseDetail->save();
             }
         }
-        return response()->json(['message' => 'Purchase updated successfully'], 200);
+        return response()->json(['message' => 'Purchase cập nhật thành công'], 200);
     }
 }

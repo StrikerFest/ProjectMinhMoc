@@ -37,7 +37,7 @@ class HomeController extends Controller
         $customer->password = hash('md5', $request->password);
         $customer->phone = $request->phone;
         $customer->save();
-        return redirect()->back()->with('success', 'Register successfully!');
+        return redirect()->back()->with('success', 'Đăng ký thành công!');
     }
     // loginCustomer
     public function loginCustomer(Request $request)
@@ -52,7 +52,7 @@ class HomeController extends Controller
             // redirect to home
             return redirect("")->with('success', 'Login successfully!');
         } else {
-            return redirect()->back()->with('error', 'Email or password is incorrect!');
+            return redirect()->back()->with('error', 'Email hoặc mật khẩu sai!');
         }
     }
     // logoutCustomer
@@ -60,7 +60,7 @@ class HomeController extends Controller
     {
         Session::forget('customer');
         session()->forget('customer');
-        return redirect("")->with('success', 'Logout successfully!');
+        return redirect("")->with('success', 'Đăng xuất thành công !');
     }
     // index
     public function index()
@@ -108,7 +108,7 @@ class HomeController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back()->with('success', 'Sản phẩm thêm vào giỏ hàng thành công!');
     }
     // all product by category
     public function allProduct($id)
@@ -232,7 +232,7 @@ class HomeController extends Controller
                 $order->save();
                 $this->mail($order->id);
                 session()->forget('cart');
-                return redirect()->back()->with('success', 'Order successfully!');
+                return redirect()->back()->with('success', 'Đặt hàng thành công!');
             }
             $request->validate([
                 'name' => 'required',
@@ -274,7 +274,7 @@ class HomeController extends Controller
             $order->save();
 
             session()->forget('cart');
-            return redirect()->back()->with('alert', 'Order successfully!');
+            return redirect()->back()->with('alert', 'Đặt hàng thành công!');
         }
     }
     // mail
@@ -289,7 +289,7 @@ class HomeController extends Controller
 
         $email = order::where('id', $id)->first()->email;
         Mail::to($email)->send(new orderMail($data));
-        return redirect()->back()->with('success', 'Send mail successfully!');
+        return redirect()->back()->with('success', 'Gửi mail thành công!');
     }
     // test
     public function test(Request $request)
@@ -345,7 +345,7 @@ class HomeController extends Controller
                 echo "<script>";
                 echo "alert('hello');";
                 echo "</script>";
-                return redirect('/checkout')->with('alert', 'Order successfully!');
+                return redirect('/checkout')->with('alert', 'Đặt hàng thành công!');
             }
             //--------------------- order for customer not login ----------------------------------------------//
             $order = new order;
@@ -477,7 +477,7 @@ class HomeController extends Controller
         $order = order::find($request->id);
         $order->Status = 3;
         $order->save();
-        return redirect('/allorder')->with('success', 'Update status successfully!');
+        return redirect('/allorder')->with('success', 'Cập nhật trạng thái thành công!');
     }
     // filterOrder
     public function filterOrder($id)
@@ -544,7 +544,7 @@ class HomeController extends Controller
         $address->address  = $addressCustomer['address'];
         $address->status  = 0;
         $address->save();
-        return redirect()->back()->with('success', 'Add address successfully!');
+        return redirect()->back()->with('success', 'Thêm địa chỉ thành công!');
     }
     // setAddress
     public function setAddress(Request $request)
@@ -560,7 +560,7 @@ class HomeController extends Controller
             $value->status = 0;
             $value->save();
         }
-        return redirect()->back()->with('success', 'Set address successfully!');
+        return redirect()->back()->with('success', 'Đặt địa chỉ thành công!');
     }
 
     // statistical

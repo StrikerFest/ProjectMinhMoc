@@ -28,7 +28,7 @@ class ProductCatergoryController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->back()->with('success', 'Category Added Successfully');
+        return redirect()->back()->with('success', 'Thể loại thêm thành công');
     }
     // update category
     public function editCategory(Request $request, $id)
@@ -37,6 +37,6 @@ class ProductCatergoryController extends Controller
         $productCategory = product_catergory::find($id);
         $productCategory->name = $request->name;
         $productCategory->save();
-        return redirect()->back()->with('success', 'Category Updated Successfully');
+        return redirect()->back()->with('success', 'Thể loại cập nhật thành công');
     }
 }

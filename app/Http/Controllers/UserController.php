@@ -27,7 +27,7 @@ class UserController extends Controller
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
         return redirect()->intended('/admin')
-                ->withSuccess('Register successfully');
+                ->withSuccess('Đăng ký thành công');
     }
     // login
     public function login(Request $request)
@@ -39,7 +39,7 @@ class UserController extends Controller
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('/admin')
-                ->withSuccess('Signed in');
+                ->withSuccess('Đã ăng nhập');
         }
         return redirect()->route('/admin');
     }

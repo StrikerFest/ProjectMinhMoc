@@ -77,7 +77,7 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect()->back()->with('success', 'Product deleted successfully');
+        return redirect()->back()->with('success', 'Sản phẩm thay đổi trạng thái bán thành công');
     }
     // edit product by id from request
     public function editProduct(Request $request, $id)
@@ -85,7 +85,7 @@ class ProductController extends Controller
         // dd($request->all());
         $found = Product::find($id);
         if (!$found) {
-            return response()->json(['message' => 'Product not found'], 404);
+            return response()->json(['message' => 'Không tìm thấy sản phẩm'], 404);
         }
 
         //  $input = $request->all();
@@ -124,7 +124,7 @@ class ProductController extends Controller
                 'image' => $comPic,
             ]
         );
-        return redirect('/admin/product')->with('success', 'Product updated successfully');
+        return redirect('/admin/product')->with('success', 'Sản phẩm cập nhật thành công');
     }
 
 
