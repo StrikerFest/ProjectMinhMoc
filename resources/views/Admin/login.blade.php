@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--favicon-->
-    <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+    <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
     <!-- loader-->
     <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
     <script src="{{ asset('assets/js/pace.min.js') }}"></script>
@@ -27,7 +27,7 @@
                 <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
                     <div class="col mx-auto">
                         <div class="mb-4 text-center">
-                            <img src="assets/images/logo-img.png" width="180" alt="" />
+                            <img src="{{ asset('assets/images/logo-img.png') }}" width="180" alt="" />
                         </div>
                         <div class="card">
                             <div class="card-body">
@@ -50,16 +50,17 @@
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" class="form-control border-end-0"
                                                         id="inputChoosePassword" value="12345"
-                                                        placeholder="Enter Password" name="password"> <a href="javascript:;"
+                                                        placeholder="Enter Password" name="password"> <a href="javascript:"
                                                         class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide' ></i></a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                            <div class="col-12">
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-light"><i
-                                                            class="bx bxs-lock-open"></i>Đăng Nhập</button>
+                                                <div class="col-12">
+                                                    <div class="d-grid">
+                                                        <button type="submit" class="btn btn-light"><i
+                                                                class="bx bxs-lock-open"></i>Đăng Nhập</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -120,14 +121,16 @@
         $(document).ready(function () {
             $("#show_hide_password a").on('click', function (event) {
                 event.preventDefault();
-                if ($('#show_hide_password input').attr("type") == "text") {
-                    $('#show_hide_password input').attr('type', 'password');
-                    $('#show_hide_password i').addClass("bx-hide");
-                    $('#show_hide_password i').removeClass("bx-show");
-                } else if ($('#show_hide_password input').attr("type") == "password") {
-                    $('#show_hide_password input').attr('type', 'text');
-                    $('#show_hide_password i').removeClass("bx-hide");
-                    $('#show_hide_password i').addClass("bx-show");
+                let passwordInput = $('#show_hide_password input');
+                let passwordI = $('#show_hide_password i');
+                if (passwordInput.attr("type") === "text") {
+                    passwordInput.attr('type', 'password');
+                    passwordI.addClass("bx-hide");
+                    passwordI.removeClass("bx-show");
+                } else if (passwordInput.attr("type") === "password") {
+                    passwordInput.attr('type', 'text');
+                    passwordI.removeClass("bx-hide");
+                    passwordI.addClass("bx-show");
                 }
             });
         });
@@ -137,12 +140,12 @@
     <script>
         $(".switcher-btn").on("click", function () {
                 $(".switcher-wrapper").toggleClass("switcher-toggled")
-            }), $(".close-switcher").on("click", function () {
+            });
+        $(".close-switcher").on("click", function () {
                 $(".switcher-wrapper").removeClass("switcher-toggled")
-            }),
+            });
 
-
-            $('#theme1').click(theme1);
+        $('#theme1').click(theme1);
         $('#theme2').click(theme2);
         $('#theme3').click(theme3);
         $('#theme4').click(theme4);
@@ -157,7 +160,6 @@
         $('#theme13').click(theme13);
         $('#theme14').click(theme14);
         $('#theme15').click(theme15);
-
 
         function theme1() {
             $('body').attr('class', 'bg-theme bg-theme1');
