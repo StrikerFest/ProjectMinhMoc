@@ -14,7 +14,7 @@
                     <div class="row">
                         <div class="col-lg-6 order-2 order-lg-1 align-self-center">
                             <div class="slide-content text-black">
-                               
+
                                 <h2 class="title">Minh Mộc</h2>
                                 <p class="short-desc"> Vua sen đá </p>
                                 <!-- <div class="btn-wrap">
@@ -92,7 +92,7 @@
                 </div>
                 <div class="banner-content text-position-left">
                     <span class="collection" style="color : white;">Bộ Sưu tâp </span>
-                    <h3 class="title" style="color : white;">Sen Đá</h3> 
+                    <h3 class="title" style="color : white;">Sen Đá</h3>
                     <div class="button-wrap">
                         <a class="btn btn-custom-size btn-pronia-primary" href="shop.html"> Xem Thêm</a>
                     </div>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="banner-content text-position-left">
                     <span class="collection" style="color : white;">Bộ Sưu tâp </span>
-                    <h3 class="title" style="color : white;">Cây Xương Rồng</h3> 
+                    <h3 class="title" style="color : white;">Cây Xương Rồng</h3>
                     <div class="button-wrap">
                         <a class="btn btn-custom-size lg-size btn-pronia-primary" href="shop.html">Xem Thêm</a>
                     </div>
@@ -372,7 +372,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>

@@ -8,11 +8,8 @@ class Cart extends Component
 {
     protected $listeners = ['showCart'];
     public $cart;
-    public function showCart($product)
-    {
-        
-    }
-    // delete item from cart
+
+    // Xóa sản phẩm trong cart
     public function delete($id)
     {
         $cart = session()->get('cart', []);
@@ -21,16 +18,19 @@ class Cart extends Component
             session()->put('cart', $cart);
         }
     }
-    // delete all item from cart
+
+    // Xóa tất cả sản phẩm trong cart
     public function deleteAll()
     {
         session()->forget('cart');
     }
+
     public function render()
     {
-        // get cart from session
+        // Lấy cart từ session
         $this->cart = session()->get('cart', []);
-        // count total price
+
+        // Đếm tổng giá
         $total = 0;
         foreach ($this->cart as $item) {
             $total += $item['quantity'] * $item['price'];

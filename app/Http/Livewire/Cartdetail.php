@@ -8,10 +8,13 @@ class Cartdetail extends Component
 {
     public $cart;
     protected $listeners = ['updateCart'];
+
+    // Cập nhật cart
     public function updateCart(){
         $this->cart = session()->get('cart', []);
     }
-    // delete item from cart
+
+    // Xóa sản phẩm trong giỏ hàng
     public function delete($id)
     {
         $cart = session()->get('cart', []);
@@ -20,7 +23,8 @@ class Cartdetail extends Component
             session()->put('cart', $cart);
         }
     }
-    // reduce quantity item from cart
+
+    // Giảm số lượng sản phẩm trong giỏ hàng
     public function reduce($id)
     {
         $cart = session()->get('cart', []);
@@ -37,10 +41,11 @@ class Cartdetail extends Component
         $this->emit('updateCart');
         $this->emit('minicart');
     }
-    // increase quantity item from cart
+
+    // Tăng số lượng trong giỏ hàng
     public function increase($id)
     {
-        
+
         $product = Product::find($id);
         $quantity_Product = $product->quantity;
         $cart = session()->get('cart', []);
@@ -50,10 +55,12 @@ class Cartdetail extends Component
                 session()->put('cart', $cart);
             }
         }
-        // emit event to update cart
+
+        // Cập nhật cart
         $this->emit('updateCart');
     }
-    // remove
+
+    // Loại bỏ
     public function remove($id)
     {
         $cart = session()->get('cart', []);
@@ -61,20 +68,25 @@ class Cartdetail extends Component
             unset($cart[$id]);
             session()->put('cart', $cart);
         }
-        // emit event to update cart
+
+        // Cập nhật cart và minicart
         $this->emit('updateCart');
         $this->emit('minicart');
     }
+
+    // Xóa tất cả cart
     public function deleteAll()
     {
         session()->forget('cart');
         $this->emit('showCart',[]);
     }
+
     public function render()
     {
-        // get cart from session
+        // Lấy cart từ session
         $this->cart = session()->get('cart', []);
-        //total price
+
+        // Lấy tổng giá
         $total = 0;
         foreach ($this->cart as $item) {
             $total += $item['price'] * $item['quantity'];

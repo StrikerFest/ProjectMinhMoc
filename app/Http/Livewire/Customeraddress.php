@@ -18,15 +18,18 @@ class Customeraddress extends Component
 
     public function render()
     {
+        // Lấy thông tin cart
         $this->cart = session()->get('cart', []);
         $provinces = Province::all();
         $districts = [];
         $wards = [];
-        // count total price
+
+        // Đếm tổng giá cart
         $total = 0;
         foreach ($this->cart as $details) {
             $total += $details['price'] * $details['quantity'];
         }
+
         return view('livewire.Customeraddress', [
             'total' => $total,
             'cart' => $this->cart,
@@ -35,6 +38,8 @@ class Customeraddress extends Component
             'wards' => $wards,
         ]);
     }
+
+    // Cập nhật >?
     public function updated($propertyName)
     {
         $district_id = District::where('province_id', $this->province_id)->get();

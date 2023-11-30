@@ -9,11 +9,15 @@ use Illuminate\Support\Facades\DB;
 class Home extends Component
 {
     public $productLastest2;
+
+    // Xem nhanh
     public function quickView($id)
     {
         $product = Product::find($id);
         $this->emit('showquickView', $product);
     }
+
+    // Thêm vào cart
     public function addToCart($id)
     {
         $product = Product::find($id);
@@ -22,7 +26,7 @@ class Home extends Component
         $i = 1;
         if (!isset($cart[$id])) {
             $cart[$id] = [
-                // check quantity of product 
+                // check quantity of product
                 "id" => $product->id,
                 "name" => $product->name,
                 "quantity" => $i,
@@ -39,9 +43,11 @@ class Home extends Component
         $this->emit('showCart', $cart);
         $this->emit('minicart');
     }
+
+    // Hiển thị trang home
     public function render()
     {
-        // get product lastest 
+        // get product lastest
         $this->productLastest2 =product::where('Is_Active', 0)->where('quantity', '>', 0)->orderBy('id', 'desc')->take(8)->get();
         return view('livewire.home');
     }

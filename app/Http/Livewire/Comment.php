@@ -13,12 +13,12 @@ class Comment extends Component
     public $message;
     public function submitForm()
     {
-       // get info in form
-        // dd($this->message);
+       // Lấy thông tin từ form
         $this->validate([
             'message' => 'required',
         ]);
-        // check login
+
+        // Kiểm tra nếu khách đã đăng nhập ( Comment yêu cầu khách đăng nhập )
         if (!session()->has('customer')) {
             session()->flash('message', 'Please login to comment.');
             return redirect()->to('/login');
@@ -29,17 +29,18 @@ class Comment extends Component
                 'content' => $this->message,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
-    
+
             ];
             comments::create($data);
             $this->message = '';
             session()->flash('message', 'Comment successfully.');
         }
-        
+        return redirect()->back();
+
     }
     public function render()
     {
-        //check login
+        // Kiểm tra khách đã đăng nhập chưa
         if (session()->has('customer')) {
             $customer = session()->get('customer');
             $customer_id = $customer->id;
@@ -49,14 +50,16 @@ class Comment extends Component
             $customer_name = null;
         }
 
-        // get comment by product id join table comment and customer and format date
+        // Lấy comment theo mã sản phẩm join với bảng comment và customer
         $comments = comments::leftJoin('customers', 'comments.id_user', '=', 'customers.id')
             ->select('comments.*', 'customers.name as customer_name')
             ->where('comments.id_product', $this->product_id)
             ->orderBy('comments.id', 'desc')
             ->get();
-        // count comment
+
+        // Đếm comment
         $count = comments::where('id_product', $this->product_id)->count();
+
         return view('livewire.comment',['customer_id'=>$customer_id,'customer_name'=>$customer_name,'comments'=>$comments,'count'=>$count]);
     }
 }
