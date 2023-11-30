@@ -41,6 +41,7 @@ class HomeProduct extends Component
         session()->put('cart', $cart);
         $this->emit('showCart', $cart);
         $this->emit('minicart');
+        $this->emit('addCartPopUp');
     }
 
     // Hiển thị trang sản phẩm

@@ -390,8 +390,8 @@
     <!-- JS Files
     ============================================ -->
 
-    <!-- POPUP check -->
     <script>
+        // POPUP alert
         document.addEventListener('DOMContentLoaded', function() {
             // Check if there is a success message in the session
             @if(session('success'))
@@ -401,6 +401,14 @@
             @endif
         });
 
+    </script>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            console.log('here');
+            Livewire.on('addCartPopUp', event => {
+                alert('Đã thêm sản phẩm vào giỏ hàng');
+            });
+        });
     </script>
 
     <script src="{{ asset('assets_customers/assets/js/vendor/bootstrap.bundle.min.js') }}">
