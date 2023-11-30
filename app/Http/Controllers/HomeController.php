@@ -151,6 +151,9 @@ class HomeController extends Controller
             'district' => 'required',
             'ward' => 'required',
         ]);
+        if(!(session()->get('cart'))){
+            return redirect('/home');
+        }
 
         // Tạo session lưu thông tin và địa chỉ khách hàng
         session(['name' => $request->name]);
@@ -243,6 +246,8 @@ class HomeController extends Controller
                 $order->address = $request->address;
                 $order->status = 0;
                 $order->payment_method = 0;
+                $Total_selling_price = 0;
+                $order->Total_selling_price = $Total_selling_price ;
                 $order->save();
 
                 $Total_selling_price = 0;

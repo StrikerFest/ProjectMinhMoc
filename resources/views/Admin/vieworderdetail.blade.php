@@ -56,9 +56,6 @@
                                             Minh - Mộc
                                         </a>
                                     </h2>
-                                    <div>A17 Tạ Quang Bửu, Bách Khoa, Hai Bà Trưng, Hà Nội</div>
-                                    <div>0942603115</div>
-                                    <div>Minh@gmail.com</div>
                                 </div>
                             </div>
                         </header>
@@ -151,7 +148,7 @@
             </div>
         </div>
     </div>
-    
+
 </div>
 <div class="modal fade" id="exampleDangerModal" tabindex="-1" aria-hidden="true" style="z-index: 999;">
         <div class="modal-dialog modal-lg modal-dialog-centered">

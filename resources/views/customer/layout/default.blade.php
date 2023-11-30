@@ -219,9 +219,8 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="copyright">
-                                <span class="copyright-text">© 2023  Made with <i
-                                        class="fa fa-heart text-danger"></i> by
-                                    <a href="" rel="noopener" target="_blank">MinhChu</a>
+                                <span class="copyright-text">© 2023 Made by
+                                    <a href="" rel="noopener" target="_blank">T.Anh & H.Hai</a>
                                 </span>
                             </div>
                         </div>

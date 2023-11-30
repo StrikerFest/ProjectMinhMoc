@@ -20,7 +20,7 @@
             </div>
         </div>
         <div>
-            <h1>Đơn hàng {{$id}} đã được đặt thành công!<a href="/">Bấm vào đây để trở về trang chủ</a></h1>
+            <h1 style="text-align: center">Đơn hàng {{$id}} đã được đặt thành công! <a href="/">Bấm vào đây để trở về trang chủ</a></h1>
         </div>
     </main>
 @endsection
