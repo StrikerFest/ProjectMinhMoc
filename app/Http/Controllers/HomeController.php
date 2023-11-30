@@ -56,7 +56,7 @@ class HomeController extends Controller
             session()->put('customer', $customer);
 
             // Trở về trang chủ
-            return redirect("")->with('success', 'Login successfully!');
+            return redirect("")->with('success', 'Đăng nhập thành công!');
         } else {
             return redirect()->back()->with('error', 'Email hoặc mật khẩu sai!');
         }
@@ -230,19 +230,6 @@ class HomeController extends Controller
 
                 // kiểm tra khách hàng đặt lần đầu hay không nếu đặt lần đầu thì thêm địa chỉ vào bảng address
                 $customer = customer::find($customer->id);
-                $address = address::where('id_customer', $customer->id)->get();
-
-                // Lưu địa chỉ mới
-                if (count($address) == 0) {
-                    $address = new address;
-                    $address->id_customer  = $customer->id;
-                    $address->province  = $request->province;
-                    $address->district  = $request->district;
-                    $address->ward  = $request->ward;
-                    $address->address  = $request->address;
-                    $address->status  = 1;
-                    $address->save();
-                }
 
                 // Tạo đơn hàng
                 $order = new order;
@@ -362,17 +349,7 @@ class HomeController extends Controller
                 $customer = session()->get('customer');
                 // kiểm tra khách hàng đặt lần đầu hay không nếu đặt lần đầu thì thêm địa chỉ vào bảng address
                 $customer = customer::find($customer->id);
-                $address = address::where('id_customer', $customer->id)->get();
-                if (count($address) == 0) {
-                    $address = new address;
-                    $address->id_customer  = $customer->id;
-                    $address->province  = Session::get('province');
-                    $address->district  =  Session::get('district');
-                    $address->ward  = Session::get('ward');
-                    $address->address  = Session::get('address');
-                    $address->status  = 1;
-                    $address->save();
-                }
+
                 $order = new order;
                 $order->customer_id = $customer->id;
                 $order->name = Session::get('name');
@@ -606,61 +583,9 @@ class HomeController extends Controller
         // Lấy thông tin khách hàng
         $customer = customer::find($customer_id);
 
-        // Lấy địa chỉ từ mã khách hàng
-        $addressCustomer = [];
-        $address = address::where('id_customer', $customer_id)->get();
-
-        foreach ($address as $value) {
-            $province = Province::find($value->province);
-            $district = District::find($value->district);
-            $ward = Ward::find($value->ward);
-            $value->province = $province->name;
-            $value->district = $district->name;
-            $value->ward = $ward->name;
-            array_push($addressCustomer, $value);
-        }
-
         // Lấy đơn hàng theo mã khách hàng
         $order = order::where('customer_id', $customer_id)->orderBy('id', 'desc')->paginate(10);
-        return view('customer.myacount', ['order' => $order, 'customer' => $customer, 'addressCustomer' => $addressCustomer]);
-    }
-
-    // Địa chỉ khách hàng
-    public function customerAddress(Request $request)
-    {
-        // Lấy mã khách hàng từ session
-        $customer = session()->get('customer');
-        $customer_id = $customer->id;
-
-        // Lưu thông tin địa chỉ
-        $addressCustomer = $request->all();
-        $address = new address;
-        $address->id_customer  = $customer_id;
-        $address->province  = $addressCustomer['province'];
-        $address->district  = $addressCustomer['district'];
-        $address->ward  = $addressCustomer['ward'];
-        $address->address  = $addressCustomer['address'];
-        $address->status  = 0;
-        $address->save();
-
-        return redirect()->back()->with('success', 'Thêm địa chỉ thành công!');
-    }
-
-    // Cập nhật địa chỉ
-    public function setAddress(Request $request)
-    {
-        // Lấy mã khách hàng từ session
-        $customer = session()->get('customer');
-        $customer_id = $customer->id;
-        $address = address::find($request->id);
-        $address->status = 1;
-        $address->save();
-        $address = address::where('id_customer', $customer_id)->where('id', '<>', $request->id)->get();
-        foreach ($address as $key => $value) {
-            $value->status = 0;
-            $value->save();
-        }
-        return redirect()->back()->with('success', 'Đặt địa chỉ thành công!');
+        return view('customer.myacount', ['order' => $order, 'customer' => $customer]);
     }
 
     // ==========================================

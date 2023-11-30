@@ -95,7 +95,6 @@
                                     required="required">
                             </div>
                         </div>
-                        @if($address == null)
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Tỉnh / Thành Phố <span class="required">*</span></label>
@@ -141,62 +140,6 @@
                                     <input placeholder="Street address" type="text" name="address" required="required">
                                 </div>
                             </div>
-                        @else
-                            @foreach($address as $address)
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Tỉnh / Thành Phố <span class="required">*</span></label>
-                                        <select name="province" id="province" wire:model="province_id"
-                                            required="required">
-                                            <option value="{{ $idCustomeraddress -> province }}">
-                                                {{ $address->province }}
-                                            </option>
-                                            @foreach($provinces as $province)
-                                                <option value="{{ $province->id }}">{{ $province->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Quận / Huyện <span class="required">*</span></label>
-                                        <select name="district" id="district" wire:model="district_id">
-                                            @if($districts==null)
-                                                <option value="{{ $idCustomeraddress -> district }}">
-                                                    {{ $address->district }}</option>
-                                            @else
-                                                @foreach($districts as $district)
-                                                    <option value="{{ $district->id }}">{{ $district->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="checkout-form-list">
-                                        <label>Xã / Phường <span class="required">*</span></label>
-                                        <select name="ward" id="ward">
-                                            @if($wards==null)
-                                                <option value="{{ $idCustomeraddress -> ward }}">
-                                                    {{ $address->ward }}</option>
-                                            @else
-                                                @foreach($wards as $ward)
-                                                    <option value="{{ $ward->id }}">{{ $ward->name }}</option>
-                                                @endforeach
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Địa chỉ chi tiết <span class="required">*</span></label>
-                                        <input placeholder="Địa chỉ chi tiết" type="text" name="address"
-                                            required="required" value="{{ $address -> address }}">
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
                     @endif
                 </div>
                 <div class="payment-method">
@@ -209,12 +152,12 @@
                             </label>
                             <br>
                             <label for="payment-momo" class="payment-option">
-                                
+
                                 <input type="radio" name="payment_method" id="payment-momo" value="1">
                                 <img src="{{ asset('assets_customers/assets/images/checkout/momo.webp') }}" alt="" style="width: 20px; height: 20px; margin-left:10px;margin-right:10px;">
                                 Thanh toán qua Momo
                             </label>
-                            <br>                          
+                            <br>
                         </div>
                     </div>
                 </div>

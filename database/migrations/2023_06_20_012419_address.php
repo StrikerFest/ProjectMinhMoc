@@ -14,12 +14,14 @@ return new class extends Migration
         //
         Schema::create('address', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_order');
+            // $table->unsignedBigInteger('id_order');
+            $table->smallInteger('id_customer');
+            $table->smallInteger('status');
             $table->string('province');
             $table->string('district');
             $table->string('ward');
             $table->string('address');
-            $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');
+            // $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');
             $table->timestamps();
         });
     }

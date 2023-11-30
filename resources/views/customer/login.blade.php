@@ -30,7 +30,7 @@
                         <input class="input" type="text" placeholder="Tên" name="name" required />
                         <input class="input" type="text" placeholder="Số điện thoại" name="phone" required />
                         <input class="input" type="email" placeholder="Email" name="email" require />
-                        <input class="input" type="password" placeholder="Mật khẩu" name="password" required />
+                        <input class="input" type="password" placeholder="Mật khẩu" minlength="6" name="password" required />
                         <button class="button" type="submit">Đăng ký</button>
                     </form>
                 </div>
@@ -40,7 +40,7 @@
                         @csrf
                         <h1>Đăng nhập</h1>
                         <input class="input" type="email" placeholder="Email" name="email" required />
-                        <input class="input" type="password" placeholder="Mật Khẩu" name="password" required />
+                        <input class="input" type="password" placeholder="Mật Khẩu" minlength="6" name="password" required />
                         <button class="button" type="submit">Đăng nhập</button>
                     </form>
                 </div>

@@ -25,38 +25,14 @@ class Checkout extends Component
         $districts = [];
         $wards = [];
         $customeraddress = [];
-        $idCustomeraddress = [];
 
         // Đếm tổng giá
         $total = 0;
-        if (empty($customer)) {
-            $address = [];
-        } else {
-
-            // Lấy địa chỉ khách hàng có status = 1
-            $address = address::where('id_customer', $customer['id'])->where('status', 1)->get();
-            $idCustomeraddress = address::where('id_customer', $customer['id'])->where('status', 1)->first();
-        }
-
-        // Tỉnh thành quận
-        foreach ($address as $value) {
-
-            $province = Province::find($value->province);
-            $district = District::find($value->district);
-            $ward = Ward::find($value->ward);
-
-            $value->province = $province->name;
-            $value->district = $district->name;
-            $value->ward = $ward->name;
-
-            array_push($customeraddress, $value);
-        }
 
         // Lấy sản phẩm trong cart
         foreach ($this->cart as $details) {
             $total += $details['price'] * $details['quantity'];
         }
-
         return view('livewire.checkout', [
             'total' => $total,
             'cart' => $this->cart,
@@ -64,8 +40,7 @@ class Checkout extends Component
             'districts' => $districts,
             'wards' => $wards,
             'customer' => $customer,
-            'address' => $customeraddress,
-            'idCustomeraddress' => $idCustomeraddress
+            'address' => $customeraddress
         ]);
     }
 

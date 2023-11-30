@@ -34,10 +34,6 @@
                                 role="tab" aria-controls="account-orders" aria-selected="false">Đơn hàng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="account-address-tab" data-bs-toggle="tab" href="#account-address"
-                                role="tab" aria-controls="account-address" aria-selected="false">Địa Chỉ</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="account-logout-tab" href="/logoutCustomer" role="tab"
                                 aria-selected="false">Đăng Xuất</a>
                         </li>
@@ -61,43 +57,6 @@
                                 <h4 class="small-title">ĐƠN HÀNG CỦA TÔI</h4>
                                 @livewire('customervieworder')
 
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="account-address" role="tabpanel"
-                            aria-labelledby="account-address-tab">
-                            <div class="myaccount-address">
-                                <table class="table table-bordered table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <td>Địa chỉ</td>
-                                            <td>
-                                                trạng thái
-                                            </td>
-                                        </tr>
-                                        @foreach($addressCustomer as $addressCustomer1)
-                                            <tr>
-
-                                                <td>
-                                                    <p>{{ $addressCustomer1 -> address }} ,
-                                                        {{ $addressCustomer1 -> ward }},{{ $addressCustomer1->district }},{{ $addressCustomer1->province }}
-                                                    </p>
-                                                </td>
-                                                @if($addressCustomer1 -> status == 1)
-                                                    <td>Đang sử dụng</td>
-                                                @else
-                                                    <td><a href="/setAddress/{{ $addressCustomer1 -> id }}">Đặt làm
-                                                            mặc định</a></td>
-                                                @endif
-
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <li data-bs-toggle="modal" data-bs-target="#quickModal" style="list-style: none;">
-                                    <a href="#" class="btn btn-dark" data-tippy="Thêm địa chỉ" data-tippy-inertia="true"
-                                        data-tippy-animation="shift-away" data-tippy-delay="10" data-tippy-arrow="true">
-                                        <span>Thêm Địa Chỉ</span>
-                                    </a>
                             </div>
                         </div>
                     </div>
