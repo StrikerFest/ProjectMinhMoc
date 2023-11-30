@@ -30,7 +30,7 @@
                     </div>
                     <div class="button-wrap pt-5">
                         <button type="submit" value="submit" class="btn btn-custom-size xl-size btn-pronia-primary"
-                            name="submit">Gửi review</button>
+                            name="submit" onclick="reloadPage()" >Gửi review</button>
                     </div>
                 </form>
             </div>
@@ -42,3 +42,8 @@
         @endif
     </div>
 </div>
+<script>
+    function reloadPage() {
+        location.reload();
+    }
+</script>

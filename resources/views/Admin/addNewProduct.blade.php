@@ -4,31 +4,10 @@
 @if($product==null)
     <div class="page-wrapper">
         <div class="page-content">
-
-            <!--breadcrumb-->
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">eCommerce</div>
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="/admin/product"><i class="bx bx-home-alt"></i></a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Thêm Sản Phẩm</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="ms-auto">
-                    <div class="btn-group">
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                                href="javascript:;">Action</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end breadcrumb-->
-
             <div class="card">
                 <div class="card-body p-4">
+
+                    {{-- Form thêm sản phẩm --}}
                     <form action="/admin/addNewProduct2" method="POST" enctype="multipart/form-data">
                         {{ Method_field('POST') }}
                         @csrf
@@ -89,7 +68,6 @@
                                 </div>
                             </div>
                         </div>
-                            <!--end row-->
                     </form>
                 </div>
             </div>
@@ -98,31 +76,10 @@
 @else
     <div class="page-wrapper">
         <div class="page-content">
-
-            <!--breadcrumb-->
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">eCommerce</div>
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="/admin/product"><i class="bx bx-home-alt"></i></a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Sửa Sản Phẩm</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="ms-auto">
-                    <div class="btn-group">
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                                href="javascript:;">Action</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end breadcrumb-->
-
             <div class="card">
                 <div class="card-body p-4">
+
+                    {{-- Form sửa sản phẩm --}}
                     <form action="/admin/product/editProduct/{{$product->id}}" method="POST" enctype="multipart/form-data">
                         {{ Method_field('POST') }}
                         @csrf
@@ -188,13 +145,10 @@
                                 </div>
                             </div>
                         </div>
-                            <!--end row-->
                     </form>
                 </div>
             </div>
         </div>
     </div>
 @endif
-<!--end page wrapper -->
-<!--start overlay-->
 @endsection

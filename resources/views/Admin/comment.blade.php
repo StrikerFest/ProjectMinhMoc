@@ -4,25 +4,6 @@
 <div class="page-wrapper">
     <div class="page-content">
         <div style="height: 600px;">
-            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-                <div class="breadcrumb-title pe-3">Trang Chủ</div>
-                <div class="ps-3">
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb mb-0 p-0">
-                            <li class="breadcrumb-item"><a href="/admin/product"><i class="bx bx-home-alt"></i></a>
-                            </li>
-                            <li class="breadcrumb-item active" aria-current="page">Quản lý bình luận</li>
-                        </ol>
-                    </nav>
-                </div>
-                <div class="ms-auto">
-                    <div class="btn-group">
-                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end"> <a class="dropdown-item"
-                                href="javascript:;">Action</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <h6 class="mb-0 text-uppercase">Comments</h6>
             <hr />
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2">
@@ -74,17 +55,6 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
 <script>
     const btnDeleteElements = document.querySelectorAll('.btn-delete');
     btnDeleteElements.forEach(btnDelete => {
@@ -103,22 +73,7 @@
                     <a href="/admin/comment/deleteComment/${id}" ><button type="button" class="btn btn-light">Có</button></a>
                 `;
 
-            // Hiển thị popup
-
         });
     });
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
