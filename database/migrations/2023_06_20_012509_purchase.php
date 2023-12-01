@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('purchase', function (Blueprint $table) {
-            $table->id();
-            $table->dateTime('date');
-            $table->timestamps();
-        });
+        // //
+        // Schema::create('purchase', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->dateTime('date');
+        //     $table->timestamps();
+        // });
     }
 
     /**

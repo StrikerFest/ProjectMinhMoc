@@ -25,8 +25,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $user = User::create($input);
-        return redirect()->intended('/admin')
-                ->withSuccess('Đăng ký thành công');
+        return redirect('/admin/login')->withSuccess('Đăng ký thành công');
     }
 
     // Đăng nhập cho admin
@@ -41,7 +40,7 @@ class UserController extends Controller
             return redirect()->intended('/admin')
                 ->withSuccess('Đã đăng nhập');
         }
-        return redirect()->route('/admin');
+        return redirect('/admin');
     }
 
     // Dashboard admin
