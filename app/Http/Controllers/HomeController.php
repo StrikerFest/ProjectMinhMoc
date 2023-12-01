@@ -373,7 +373,7 @@ class HomeController extends Controller
                 $Total_selling_price = 0;
                 $order->Total_selling_price = $Total_selling_price ;
                 $order->save();
-                $cart = session()->get('cart');
+                $cart = session()->get('cart',[]);
                 foreach ($cart as $key => $value) {
                     $order_detail = new orders_details;
                     $order_detail->order_id = $order->id;
@@ -407,12 +407,12 @@ class HomeController extends Controller
             $order->payment_method = 1;
             $order->Total_selling_price = $Total_selling_price ;
             $order->save();
-            $cart = session()->get('cart');
+            $cart = session()->get('cart',[]);
             // foget session address
-            // session()->forget('province');
-            // session()->forget('district');
-            // session()->forget('ward');
-            // session()->forget('address');
+            session()->forget('province');
+            session()->forget('district');
+            session()->forget('ward');
+            session()->forget('address');
             foreach ($cart as $key => $value) {
                 $order_detail = new orders_details;
                 $order_detail->order_id = $order->id;
@@ -431,7 +431,7 @@ class HomeController extends Controller
             echo "<script>";
             echo "alert('hello');";
             echo "</script>";
-            return redirect('/checkout')->with('alert', 'Đặt hàng thành công!');
+            return redirect('/checkout')->with('success', 'Đặt hàng thành công!');
         }
         return view('customer.checkout');
     }
