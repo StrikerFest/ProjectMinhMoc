@@ -27,7 +27,7 @@ class Cartdetail extends Component
     // Giảm số lượng sản phẩm trong giỏ hàng
     public function reduce($id)
     {
-        $cart = session()->get('cart', []);
+        $cart = session()->get('cart');
         if (isset($cart[$id])) {
             if ($cart[$id]['quantity'] > 1) {
                 $cart[$id]['quantity']--;
@@ -48,7 +48,7 @@ class Cartdetail extends Component
 
         $product = Product::find($id);
         $quantity_Product = $product->quantity;
-        $cart = session()->get('cart', []);
+        $cart = session()->get('cart');
         if (isset($cart[$id])) {
             if ($cart[$id]['quantity'] < $quantity_Product) {
                 $cart[$id]['quantity']++;

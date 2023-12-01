@@ -188,19 +188,14 @@
                                 <td class="cart-product-name">
                                     {{ $cartItem['name'] }}<strong class="product-quantity">
                                         × {{ $cartItem['quantity'] }}</strong></td>
-
                                 <td class="cart-product-total"><span
-                                        class="amount">{{ $cartItem['quantity']*$cartItem['price'] }}</span>
-                                </td>
-
-                                <td>
-
+                                        class="amount">{{ $cartItem['quantity']*$cartItem['price'] }} VND</span>
                                 </td>
                             </tr>
                         @endforeach
                         <tr>
                             <td>Phí ship</td>
-                            <td>20.000</td>
+                            <td>20.000 VND</td>
                         </tr>
                     </tbody>
                     <tfoot>
@@ -208,7 +203,7 @@
                         </tr>
                         <tr class="order-total">
                             <th>Tổng Tiền</th>
-                            <td><strong><span class="amount">{{ $total + 20000 }}</span></strong></td>
+                            <td><strong><span class="amount">{{ $total + 20000 }} VND</span></strong></td>
                         </tr>
                     </tfoot>
                 </table>

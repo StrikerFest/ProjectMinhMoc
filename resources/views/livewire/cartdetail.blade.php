@@ -48,7 +48,7 @@
                                                 </div>
                                             </td>
                                             <td class="product-subtotal"><span
-                                                    class="amount">{{ $item['quantity']*$item['price'] }}</span>
+                                                    class="amount">{{ $item['quantity']*$item['price'] }} VND</span>
                                             </td>
                                             <td class="product_remove">
                                                 <a href="#">
@@ -85,8 +85,8 @@
                                     <div class="cart-page-total">
                                         <h2>Tổng tiền</h2>
                                         <ul>
-                                            <li>Subtotal <span>{{ $total }}</span></li>
-                                            <li>Total <span>{{ $total }}</span></li>
+                                            <li>Subtotal <span>{{ $total }} VND</span></li>
+                                            <li>Total <span>{{ $total }} VND</span></li>
                                         </ul>
                                         <a href="/checkout">Tiếp tục thanh toán</a>
                                     </div>

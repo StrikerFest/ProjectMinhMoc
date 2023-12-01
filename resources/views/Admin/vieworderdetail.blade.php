@@ -76,25 +76,20 @@
                                             </td>
                                             <td class="unit">{{ $or->price }}</td>
                                             <td class="qty">{{ $or->quantity }}</td>
-                                            <td class="total">{{ $or->price *$or->quantity }}</td>
+                                            <td class="total">{{ $or->price *$or->quantity }} VND</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <!-- <td colspan="2"></td>
-                                            <td colspan="2">Tổng tiền</td>
-                                            <td></td> -->
-                                    </tr>
-                                    <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">Phí ship</td>
-                                        <td>20000</td>
+                                        <td>20000 VND</td>
                                     </tr>
                                     <tr>
                                         <td colspan="2"></td>
                                         <td colspan="2">Tổng Tiền</td>
-                                        <td>{{ $order->Total_selling_price }}</td>
+                                        <td>{{ $order->Total_selling_price }} VND</td>
                                     </tr>
                                 </tfoot>
                             </table>

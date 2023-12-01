@@ -93,9 +93,9 @@
                 <div class="banner-content text-position-left">
                     <span class="collection" style="color : white;">Bộ Sưu tâp </span>
                     <h3 class="title" style="color : white;">Sen Đá</h3>
-                    <div class="button-wrap">
+                    {{-- <div class="button-wrap">
                         <a class="btn btn-custom-size btn-pronia-primary" href="shop.html"> Xem Thêm</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -121,9 +121,9 @@
                 <div class="banner-content text-position-left">
                     <span class="collection" style="color : white;">Bộ Sưu tâp </span>
                     <h3 class="title" style="color : white;">Cây Xương Rồng</h3>
-                    <div class="button-wrap">
+                    {{-- <div class="button-wrap">
                         <a class="btn btn-custom-size lg-size btn-pronia-primary" href="shop.html">Xem Thêm</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
