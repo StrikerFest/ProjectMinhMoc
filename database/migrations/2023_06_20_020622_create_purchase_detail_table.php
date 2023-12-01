@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('purchase_detail', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('id_purchase');
-            $table->unsignedBigInteger('id_product');
-            $table->integer('quantity');
-            $table->string('price');
-            $table->foreign('id_purchase')->references('id')->on('purchase')->onDelete('cascade');
-            $table->foreign('id_product')->references('id')->on('product')->onDelete('cascade');
-            $table->timestamps();
-        });
+        // Schema::create('purchase_detail', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->unsignedBigInteger('id_purchase');
+        //     $table->unsignedBigInteger('id_product');
+        //     $table->integer('quantity');
+        //     $table->string('price');
+        //     $table->foreign('id_purchase')->references('id')->on('purchase')->onDelete('cascade');
+        //     $table->foreign('id_product')->references('id')->on('product')->onDelete('cascade');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('purchase_detail');
+        // Schema::dropIfExists('purchase_detail');
     }
 };
