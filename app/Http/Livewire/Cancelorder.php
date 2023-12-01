@@ -23,6 +23,7 @@ class Cancelorder extends Component
             $order->save();
         }
         $this->emit('cancelOrderSuccess');
+        return redirect('myAccount')->with('success','Đã hủy thành công');
     }
     public function render()
     {

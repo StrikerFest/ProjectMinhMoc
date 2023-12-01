@@ -15,3 +15,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    function refreshPage() {
+        location.reload();
+    }
+</script>
