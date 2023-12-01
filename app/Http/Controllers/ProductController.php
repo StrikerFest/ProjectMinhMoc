@@ -26,6 +26,9 @@ class ProductController extends Controller
     {
         $productCategory = product_catergory::all();
         $product = [];
+        if ($productCategory->count() == 0) {
+            return redirect('/admin/category')->with('error','Thêm thể loại sản phẩm đầu tiên đã');
+        }
         return view('admin.addNewProduct', ['productCategory' => $productCategory, 'product' => $product]);
     }
 
