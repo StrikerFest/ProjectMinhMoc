@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            $table->float('Total_selling_price');
+            $table->double('Total_selling_price');
             $table->string('phone');
             $table->string('province');
             $table->string('district');

@@ -137,7 +137,7 @@ Route::get('/admin/customer', function () {
 })->middleware('admin');
 
 // test
-// Route::get('/test', [HomeController::class,'test']);
+Route::get('/test', [HomeController::class,'test']);
 
 
 // --------------------------------------------------------------------------------------------------------------------
